@@ -1,40 +1,17 @@
-# njk
-> DRY config for static sites with gulp and nunjucks
-
-## Install
-
-Install with [npm](https://npm.im/njk)
-
-```
-npm install --save-dev njk
-```
-
-## Usage
-Install [gulp](https://npm.im/gulp)
-and create `gulpfile.js`
-
-```js
-const gulp = require('gulp')
-require('njk')(gulp)
-```
-
-and a create `njk.yml`
-
-```yaml
 ---
 # options for njk plugin
 
 # task images
 images :
   src: app/images/**/*.{svg,png,jpg}
-  gifsicle:
+  gifsicle: 
     interlaced : true
   jpegtran :
     progressive : true
   optipng :
     optimizationLevel : 7
-  svgo:
-    plugins:
+  svgo: 
+    plugins: 
       removeViewBox : false
   dest : dist/images/
 
@@ -65,7 +42,7 @@ scripts:
     - node_modules/jquery/dist/jquery.js
     - app/scripts/**/*.js
   outfile: main.js
-  uglify:
+  uglify: 
   dest: dist/assets
 
 # task pages
@@ -102,7 +79,7 @@ watch:
   scripts: app/scripts/**/*.js
   styles: app/styles/**/*.scss
   pages:
-    - app/pages/**/*.{njk,md,html}
+    - app/pages/**/*.{njk,md,html}      
     - app/layouts/**/*.njk
     - app/data.json
   images: app/images/**/*.{svg,png,jpg}
@@ -116,38 +93,3 @@ deploy:
 build:
   dir: dist
   dest: dist/**/*
-```
-
-Now modify `njk.yml` according to your needs.
-You can add your own tasks too.
-
-### Predefined Tasks
-
-```
-  ├─┬ build
-  │ ├─┬ seo
-  │ │ └─┬ html
-  │ │   ├── styles
-  │ │   ├── scripts
-  │ │   └── svg
-  │ ├── images
-  │ └── extras
-  ├── clean
-  ├── default
-  ├── deploy
-  ├── extras
-  ├─┬ html
-  │ ├── styles
-  │ ├── scripts
-  │ └── svg
-  ├── images
-  ├── scripts
-  ├─┬ seo
-  │ └─┬ html
-  │   ├── styles
-  │   ├── scripts
-  │   └── svg
-  ├── serve
-  ├── styles
-  └── svg
-```
