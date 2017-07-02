@@ -125,7 +125,7 @@ module.exports = function (_gulp) {
   // Build everything and show gziped size
   _gulp.task('build', ['seo', 'images', 'extras'], () => {
     return _gulp.src(options.build.dest)
-    .pipe($.size({title: 'build', gzip: true, showFiles: true}))
+    .pipe($.size({title: 'build', gzip: true}))
   })
 
   // Clean and build
