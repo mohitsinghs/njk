@@ -1,6 +1,6 @@
 {
   "name": "njk",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "DRY config for static sites with gulp and nunjucks",
   "main": "index.js",
   "scripts": {
