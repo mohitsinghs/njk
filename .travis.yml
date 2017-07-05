@@ -1,10 +1,12 @@
 language: node_js
 node_js:
+  - '4'
   - '6'
   - '8'
 before_install:
   - npm i -g npm
 notifications:
+  email: false
   slack:
     rooms:
       secure: TlJWKa4y4VKydByBlUbYnx9x9DNXhEZzxMvHskomW5ky7tfeOi6HKxp+ALFRAwSmeO3NUrh1NSh4U06gCqqYrdaPyLOE2RnhVLP556MkB1X3vIllGVKYcKtT5njsnQZbgQk2x1P9yVsx+uGB18RVAcgWbYARQq+4uF+BkUDjLcooiL8+LyFlryt4qrtEVGV0sUAahtX0oQ1iDjgvX54FD+MFWNApNcmiXtCI0btucZaxMgX35Dx1S35o7joXo+8D1V1A6ErFiaOOfKBZAVJZWsVOYwf8ERwQtFPkZoftWnL7OBKCDz9bX+ODj03MTp9NV3lgHs06c7dMizGIu4vSM46H+3wWNo9gRLzF0If7DmE3e15ZkISQApMW+1Xo87FQ+6O2Ni7ETMS8J6YUBrZ3dcB4ayHvNL6ehHmV+mNZgc/dC5WxRWhoKZdLoMaVq2+LqNRsNj54yAC/4Z7Z1ftNc3AjYfz2hOKkt6qs2ttNL8aS6TqgqPSBLdH/evOA4dCZaPznIHNOne1vGG8WyPMA3nJ5qvUPm0odRvriLrvaVeCQm6OYBNekW7+7SHatlUkknTpDRgeQJxzHk3XzWyilsz2wxjc27bXgTgPT3P1RHkllhE/zFEkhmQdPJ0fncpFedjljio/rnVroHQX2raa1zFCbcOUNTXhBSZkEQlOInfw=
