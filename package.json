@@ -49,9 +49,9 @@
     "gulp-size": "^2.1.0",
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^3.0.0",
-    "js-yaml": "^3.8.4",
+    "js-yaml": "^3.9.0",
     "lodash": "^4.17.4",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^2.0.0"
   },
   "devDependencies": {
     "standard": "^10.0.2"
