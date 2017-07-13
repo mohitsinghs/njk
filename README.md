@@ -28,20 +28,21 @@ and a create `njk.yml`
 
 ```yaml
 ---
-# options for njk plugin
+# default options for njk plugin
 
 # task images
 images :
-  src: app/images/**/*.{svg,png,jpg}
+  src:
+    - app/images/**/*.{svg,png,jpg,gif}
   gifsicle:
     interlaced : true
-  jpegtran :
+  mozjpeg :
     progressive : true
   optipng :
     optimizationLevel : 7
   svgo:
     plugins:
-      removeViewBox : false
+      - removeViewBox : false
   dest : dist/images/
 
 # task svg
@@ -68,7 +69,6 @@ styles :
 # task scripts
 scripts:
   src:
-    - node_modules/jquery/dist/jquery.js
     - app/scripts/**/*.js
   outfile: main.js
   uglify:
@@ -76,7 +76,8 @@ scripts:
 
 # task pages
 pages :
-  src: app/pages/**/*.{njk,md,html}
+  src:
+    - app/pages/**/*.{njk,md,html}
   nunjucks:
     path: app/layouts
     data: app/data.json
@@ -85,7 +86,7 @@ pages :
 # task seo
 seo:
   src: dist/**/*.html
-  url: https://mohitsingh.in
+  url: https://example.com
   critical:
     base : dist
     inline : true
@@ -111,7 +112,8 @@ watch:
     - app/pages/**/*.{njk,md,html}
     - app/layouts/**/*.njk
     - app/data.json
-  images: app/images/**/*.{svg,png,jpg}
+  images:
+    - app/images/**/*.{svg,png,jpg}
 
 # task deploy
 deploy:
