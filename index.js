@@ -21,7 +21,7 @@ module.exports = function (_gulp) {
       .pipe($.flatten())
       .pipe($.imagemin([
         $.imagemin.gifsicle(options.images.gifsicle),
-        $.imagemin.jpegtran(options.images.jpegtran),
+        $.imagemin.mozjpeg(options.images.mozjpeg),
         $.imagemin.optipng(options.images.optipng),
         $.imagemin.svgo(options.images.svgo)
       ]))
