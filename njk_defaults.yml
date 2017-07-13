@@ -6,7 +6,7 @@ images :
   src: app/images/**/*.{svg,png,jpg}
   gifsicle: 
     interlaced : true
-  jpegtran :
+  mozjpeg :
     progressive : true
   optipng :
     optimizationLevel : 7
