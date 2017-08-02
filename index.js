@@ -11,21 +11,26 @@ const reload = bs.reload
 const cs = critical.stream
 
 module.exports = function (_gulp) {
+
   const defaults = yaml.safeLoad(fs.readFileSync(path.join(__dirname, 'njk_defaults.yml'), 'utf8'))
   const options = _.defaultsDeep(yaml.safeLoad(fs.readFileSync('njk.yml', 'utf8')) || {}, defaults)
   const runSequence = require('run-sequence').use(_gulp)
 
   // Optimize Images
   _gulp.task('images', function () {
+    const plugins = Object.keys(options.images.imagemin)
+    const defaultPlugins = ['pngquant', 'jpegtran', 'gifsicle', 'svgo']
+    let imageminOptions = []
+    plugins.forEach(function (plugin) {
+      if (_.has(defaultPlugins, plugin)) imageminOptions.push($.imagemin[plugin](options.images.imagemin[plugin]))
+      else imageminOptions.push(require(`imagemin-${plugin}`)(options.images.imagemin[plugin]))
+    }, this)
+
     return _gulp.src(options.images.src)
       .pipe($.flatten())
-      .pipe($.imagemin([
-        $.imagemin.gifsicle(options.images.gifsicle),
-        $.imagemin.mozjpeg(options.images.mozjpeg),
-        $.imagemin.optipng(options.images.optipng),
-        $.imagemin.svgo(options.images.svgo)
-      ]))
+      .pipe($.imagemin(imageminOptions))
       .pipe(_gulp.dest(options.images.dest))
+      .pipe(reload({stream: true}))
   })
 
   // Store SVG Images
@@ -104,7 +109,7 @@ module.exports = function (_gulp) {
       _gulp.watch(options.watch.scripts, ['scripts'])
       _gulp.watch(options.watch.styles, ['styles'])
       _gulp.watch([options.watch.pages], ['html'])
-      _gulp.watch([options.watch.images], ['images', reload])
+      _gulp.watch([options.watch.images], ['images'])
     })
   })
 

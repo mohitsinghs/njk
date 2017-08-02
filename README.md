@@ -12,7 +12,7 @@
 Install with [npm](https://npm.im/njk)
 
 ```
-npm install --save-dev njk
+npm i -D njk
 ```
 
 ## Usage
@@ -34,15 +34,16 @@ and a create `njk.yml`
 images :
   src:
     - app/images/**/*.{svg,png,jpg,gif}
-  gifsicle:
-    interlaced : true
-  mozjpeg :
-    progressive : true
-  optipng :
-    optimizationLevel : 7
-  svgo:
-    plugins:
-      - removeViewBox : false
+  imagemin:
+    gifsicle:
+      interlaced : true
+    jpegtran :
+      progressive : true
+    optipng :
+      optimizationLevel : 7
+    svgo:
+      plugins:
+        - removeViewBox : false
   dest : dist/images/
 
 # task svg
