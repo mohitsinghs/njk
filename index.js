@@ -11,7 +11,6 @@ const reload = bs.reload
 const cs = critical.stream
 
 module.exports = function (_gulp) {
-
   const defaults = yaml.safeLoad(fs.readFileSync(path.join(__dirname, 'njk_defaults.yml'), 'utf8'))
   const options = _.defaultsDeep(yaml.safeLoad(fs.readFileSync('njk.yml', 'utf8')) || {}, defaults)
   const runSequence = require('run-sequence').use(_gulp)
