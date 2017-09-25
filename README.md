@@ -5,26 +5,48 @@
 [![devDependencies](https://david-dm.org/mohitsinghs/njk/dev-status.svg)](https://david-dm.org/mohitsinghs/njk?type=dev)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![license MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/mohitsinghs/njk/blob/master/LICENSE)
-> DRY config for static sites with gulp and nunjucks
+> DRY config for static sites with gulp and nunjucks. This can be used as a quick and easy setup to generate static sites.
 
 ## Install
 
 Install with [npm](https://npm.im/njk)
 
 ```
-npm i -D njk
+npm i -D njk gulp
 ```
 
+## Features
+- Minimum or no configuration
+- Uses nunjucks for templating
+- Handles markdown by default
+- Uses scss and and autoprefixer for styles
+- Minifies html, css, js and images with imagemin
+- Generates sitemap and inlines critical css
+
+## Tasks
+- **build** - Generate production build
+- **clean** - Clean build directory
+- **default** - Clean build directory and run build
+- **deploy** - Deploy to Github pages
+- **extras** - Copy extra files to build directory
+- **html** - Render nunjucks and markdown to html
+- **images** Generate and minify images
+- **scripts** - Generate and minify scripts
+- **seo** - Generate sitemap and inline critical css
+- **serve** - Serve from build directory
+- **styles** - Generate and minify stylesheets
+- **svg** - Combine and minify svg icons
+
 ## Usage
-Install [gulp](https://npm.im/gulp)
-and create `gulpfile.js`
+
+First you need to create a `gulpfile.js`
 
 ```js
 const gulp = require('gulp')
 require('njk')(gulp)
 ```
 
-and a create `njk.yml`
+and a `njk.yml`
 
 ```yaml
 ---
@@ -128,35 +150,4 @@ build:
 ```
 
 Now modify `njk.yml` according to your needs.
-You can add your own tasks too.
-
-### Predefined Tasks
-
-```
-  ├─┬ build
-  │ ├─┬ seo
-  │ │ └─┬ html
-  │ │   ├── styles
-  │ │   ├── scripts
-  │ │   └── svg
-  │ ├── images
-  │ └── extras
-  ├── clean
-  ├── default
-  ├── deploy
-  ├── extras
-  ├─┬ html
-  │ ├── styles
-  │ ├── scripts
-  │ └── svg
-  ├── images
-  ├── scripts
-  ├─┬ seo
-  │ └─┬ html
-  │   ├── styles
-  │   ├── scripts
-  │   └── svg
-  ├── serve
-  ├── styles
-  └── svg
-```
+You can add your own tasks in `gulpfile.js` too.
