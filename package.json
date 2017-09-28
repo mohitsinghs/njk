@@ -29,7 +29,7 @@
   "dependencies": {
     "browser-sync": "^2.18.13",
     "critical": "^0.9.1",
-    "data-dir": "^0.1.0",
+    "data-dir": "^1.0.0",
     "del": "^3.0.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-cheerio": "^0.6.2",
