@@ -71,7 +71,7 @@ module.exports = _gulp => {
   // Render Nunjuks to HTML
   _gulp.task('html', ['styles', 'scripts', 'svg'], () => {
     if (options.pages.dataDir) {
-      options.pages.nunjucks.data = dataDir(options.pages.dataDir).next().value
+      options.pages.nunjucks.data = dataDir(options.pages.dataDir)
     }
     return _gulp.src(options.pages.src)
       .pipe($.plumber())
