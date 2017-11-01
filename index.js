@@ -76,7 +76,7 @@ module.exports = _gulp => {
     return _gulp.src(options.pages.src)
       .pipe($.plumber())
       .pipe($.nunjucksMd(options.pages.nunjucks))
-      .pipe($.rename(function (path) {
+      .pipe($.rename(path => {
         if (path.basename !== 'index' && path.basename !== '404') {
           path.dirname += '/' + path.basename
           path.basename = 'index'
