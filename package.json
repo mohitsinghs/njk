@@ -1,24 +1,23 @@
 {
   "name": "njk",
   "version": "1.1.6",
-  "description": "DRY config for static sites with gulp and nunjucks",
+  "description": "CLI tool to compile nunjucks with markdown and front-matter",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard --fix"
+  },
+  "bin": {
+    "njk": "./cli.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mohitsinghs/njk.git"
   },
   "keywords": [
-    "static",
-    "site",
-    "generator",
-    "gulp",
+    "cli",
     "nunjucks",
     "markdown",
-    "config",
-    "scaffold"
+    "front-matter"
   ],
   "author": "Mohit Singh <mohit@mohitsingh.in> (https://mohitsingh.in)",
   "license": "MIT",
@@ -27,32 +26,13 @@
   },
   "homepage": "https://github.com/mohitsinghs/njk#readme",
   "dependencies": {
-    "browser-sync": "^2.18.13",
-    "critical": "^0.9.1",
     "data-dir": "^1.0.1",
-    "del": "^3.0.0",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-cheerio": "^0.6.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-csso": "^3.0.0",
-    "gulp-flatten": "^0.3.1",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-imagemin": "^3.4.0",
-    "gulp-load-plugins": "^1.5.0",
-    "gulp-nunjucks-md": "^1.4.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.6.1",
-    "gulp-sass": "^3.1.0",
-    "gulp-save": "^1.2.1",
-    "gulp-sitemap": "^4.2.0",
-    "gulp-size": "^2.1.0",
-    "gulp-svgstore": "^6.1.0",
-    "gulp-uglify": "^3.0.0",
-    "js-yaml": "^3.10.0",
+    "front-matter": "^2.3.0",
     "lodash": "^4.17.4",
-    "run-sequence": "^2.2.0"
+    "marked": "^0.3.6",
+    "meow": "^3.7.0",
+    "nunjucks": "^3.0.1",
+    "ora": "^1.3.0"
   },
   "devDependencies": {
     "standard": "^10.0.3"
