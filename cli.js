@@ -23,16 +23,29 @@ const cli = meow(`
     njk page.njk -d data.json -t templates
     njk pages -d data -t templates
 `, {
-  default: {
-    template: process.cwd(),
-    out: 'dist'
-  },
-  alias: {
-    d: 'data',
-    t: 'template',
-    b: 'use-block',
-    e: 'escape-markdown',
-    o: 'out'
+  flags: {
+    data: {
+      alias: 'd',
+      type: 'string'
+    },
+    template: {
+      alias: 't',
+      type: 'string',
+      default: process.cwd()
+    },
+    useBlock: {
+      alias: 'b',
+      type: 'boolean'
+    },
+    escapeMarkdown: {
+      alias: 'e',
+      type: 'boolean'
+    },
+    out: {
+      alias: 'o',
+      type: 'string',
+      default: 'dist'
+    }
   }
 })
 
