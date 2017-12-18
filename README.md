@@ -1,6 +1,6 @@
 # njk
 
-> Cli tool to render nunjucks templates with markdown.
+> Cli tool to render nunjucks templates with markdown and front-matter.
 
 [![Build Status](https://travis-ci.org/mohitsinghs/njk.svg)](https://travis-ci.org/mohitsinghs/njk)
 [![npm](https://badge.fury.io/js/njk.svg)](http://badge.fury.io/js/njk)
@@ -20,17 +20,17 @@ npm i -g njk
 ```console
 $ njk --help
 
-  CLI tool to compile nunjucks with markdown and front-matter.
+  CLI tool to compile nunjucks with markdown and front-matter
 
   Usage
     njk <dirs|files|globs>
 
   Options
     --data, -d                JSON data
-    --template, -t            Template folder
+    --template, -t            Template directory
     --use-block, -b           Content block in files
     --escape-markdown, -e     Escape markdown
-    --out, -o                 Output folder
+    --out, -o                 Output directoty
 
     If no option is passed, current directory is used
 
