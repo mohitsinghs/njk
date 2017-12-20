@@ -30,6 +30,9 @@ $ njk --help
     --template, -t            Template directory
     --use-block, -b           Content block in files
     --escape-markdown, -e     Escape markdown
+    --minify, -m              Minify output html
+    --watch, -w               Watch file changes
+    --clean, -c.              Use clean urls
     --out, -o                 Output directoty
 
     If no option is passed, current directory is used
@@ -38,3 +41,9 @@ $ njk --help
     njk page.njk -d data.json -t templates
     njk pages -d data -t templates
 ```
+
+### Notes
+Following options can be configured through front-matter of individual files.
+ - __`useBlock`__ Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
+ - __`clean`__ Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
+ 
