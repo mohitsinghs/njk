@@ -4,8 +4,8 @@
 const fs = require('fs')
 const path = require('path')
 const meow = require('meow')
-const ora = require('ora')
-const deepFiles = require('deep-files')
+const log = require('log-symbols')
+const chalk = require('chalk')
 const dataDir = require('data-dir')
 const chokidar = require('chokidar')
 const njk = require('./')
@@ -23,6 +23,7 @@ const cli = meow(`
     --watch, -w               Watch file changes
     --clean, -c.              Use clean urls
     --out, -o                 Output directoty
+    --verbose, -v             Show verbose
 
     If no option is passed, current directory is used
 
@@ -64,12 +65,20 @@ const cli = meow(`
       alias: 'o',
       type: 'string',
       default: 'dist'
+    },
+    verbose: {
+      alias: 'v',
+      'type': 'boolean'
     }
   }
 })
 
-const spinner = ora('Processing').start()
-
+/**
+ * Get json form given directory or file. Return empty
+ * data if nothing is found.
+ *
+ * @returns {Object}
+ */
 function readData () {
   if (cli.flags.d) {
     try {
@@ -79,54 +88,92 @@ function readData () {
         return JSON.parse(fs.readFileSync(cli.flags.d))
       }
     } catch (err) {
-      spinner.fail(`Error reading data from ${cli.flags.d}`)
+      console.error(`${chalk.red(log.error)} Error reading data from ${cli.flags.d}`)
       process.exit(1)
     }
   } else {
-    spinner.warn('Using empty global data')
+    console.log(`${chalk.yellow(log.warning)} Using empty global data`)
     return {}
   }
 }
 
-const PATTERN = /\.njk|\.html|\.md|\.mdown|\.markdown/
+// use current directory for no input. first input otherwise
 let current = cli.input.length ? cli.input[0] : process.cwd()
 let watchList = []
-watchList.push(path.resolve(cli.flags.t))
-if (cli.input.length > 1) {
-  cli.input.forEach(file => {
-    watchList.push(path.resolve(current))
-    njk(deepFiles(file, PATTERN), readData(), cli.flags)
-  })
-} else {
-  watchList.push(path.resolve(current))
-  njk(deepFiles(current, PATTERN), readData(), cli.flags)
+
+// read template directory and add to watchlist
+try {
+  if (fs.lstatSync(cli.flags.t).isDirectory()) {
+    watchList.push(path.resolve(cli.flags.t))
+  }
+} catch (err) {
+  console.log(`${chalk.red(log.error)} Error reading template directory \n ${err}`)
+  process.exit(1)
 }
 
+if (cli.input.length > 1) {
+  // for multiple inputs process each file and folder
+  cli.input.forEach(file => {
+    watchList.push(path.resolve(file))
+    njk(file, readData(), cli.flags)
+  })
+} else {
+  // process current directory for single input
+  watchList.push(path.resolve(current))
+  njk(current, readData(), cli.flags)
+}
+
+// set up watcher for template and file changes
 if (cli.flags.watch) {
-  spinner.info('Running in watch mode')
+  console.log(`${chalk.blue(log.info)} Running in watch mode`)
   chokidar
     .watch(watchList, {
       ignoreInitial: true
     })
     .on('all', (event, file) => {
       if (isTemplate(file)) {
-        spinner.info(`Changed template ${path.relative(process.cwd(), file)}`)
+        // if a template is changed render everything again
+        console.log(`${chalk.blue(log.info)} Changed template ${chalk.yellow(path.relative(process.cwd(), file))}`)
         if (cli.input.length > 1) {
-          cli.input.forEach(file => {
-            njk(deepFiles(file, PATTERN), readData(), cli.flags)
-          })
+          cli.input.forEach(file => njk(file, readData(), cli.flags))
         } else {
-          njk(deepFiles(current, PATTERN), readData(), cli.flags)
+          njk(current, readData(), cli.flags)
         }
-      } else if (PATTERN.test(path.extname(file))) {
-        spinner.info(`Changed ${path.relative(process.cwd(), file)}`)
+      } else if (/\.njk|\.html|\.md|\.mdown|\.markdown/.test(path.extname(file))) {
+        // if a single file is changed render that file
+        console.log(`${chalk.blue(log.info)} Changed ${chalk.yellow(path.relative(process.cwd(), file))}`)
+        cli.flags.parent = getParent(file)
         njk(file, readData(), cli.flags)
       }
     })
 }
 
-spinner.stop()
+/**
+ * Get parent directory passed as input for given file.
+ * Use current directory otherwise.
+ *
+ * @arg {string} file - path of the file
+ *
+ * @returns {string}
+ */
+function getParent (file) {
+  if (cli.input.length > 1) {
+    cli.input.forEach(p => {
+      if (file.indexOf(path.resolve(p)) !== -1) {
+        return path.resolve(p)
+      }
+    })
+  } else if (file.indexOf(path.resolve(current) !== -1)) {
+    return path.resolve(current)
+  }
+  return process.cwd()
+}
 
+/**
+ * Check if given file is inside template directory or not.
+ *
+ * @returns {boolean}
+ */
 function isTemplate (file) {
   return path.resolve(file).indexOf(path.resolve(cli.flags.t)) !== -1
 }
