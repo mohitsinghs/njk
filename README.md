@@ -33,7 +33,8 @@ $ njk --help
     --minify, -m              Minify output html
     --watch, -w               Watch file changes
     --clean, -c.              Use clean urls
-    --out, -o                 Output directoty
+    --out, -o                 Output directory
+    --verbose, -v             Show verbose
 
     If no option is passed, current directory is used
 
