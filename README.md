@@ -17,7 +17,7 @@ npm i -g njk
 
 ## Uses
 
-![](media/screenshot.png)
+<img src="media/screenshot.png" width="437">
 
 ```console
 $ njk --help
