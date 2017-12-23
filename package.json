@@ -39,6 +39,7 @@
     "log-symbols": "^2.1.0",
     "marked": "^0.3.7",
     "meow": "^4.0.0",
+    "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1"
   },
   "devDependencies": {
