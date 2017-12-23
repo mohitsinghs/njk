@@ -17,6 +17,8 @@ npm i -g njk
 
 ## Uses
 
+![](media/screenshot.png)
+
 ```console
 $ njk --help
 
