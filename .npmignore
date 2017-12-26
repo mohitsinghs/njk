@@ -1,0 +1,4 @@
+*.sublime-project
+*.sublime-workspace
+.travis.yml
+media
