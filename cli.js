@@ -3,75 +3,26 @@
 'use strict'
 const fs = require('fs')
 const path = require('path')
-const meow = require('meow')
+const cli = require('commander')
 const log = require('log-symbols')
-const chalk = require('chalk')
 const dataDir = require('data-dir')
 const chokidar = require('chokidar')
 const njk = require('./')
+const yellow = require('chalk')['yellow']
 
-const cli = meow(`
-  Usage
-    njk <dirs|files|globs>
-
-  Options
-    --data, -d                JSON data
-    --template, -t            Template directory
-    --use-block, -b           Content block in files
-    --escape-markdown, -e     Escape markdown
-    --minify, -m              Minify output html
-    --watch, -w               Watch file changes
-    --clean, -c.              Use clean urls
-    --out, -o                 Output directoty
-    --verbose, -v             Show verbose
-
-    If no option is passed, current directory is used
-
-  Examples
-    njk page.njk -d data.json -t templates
-    njk pages -d data -t templates
-`, {
-  flags: {
-    data: {
-      alias: 'd',
-      type: 'string'
-    },
-    template: {
-      alias: 't',
-      type: 'string',
-      default: process.cwd()
-    },
-    useBlock: {
-      alias: 'b',
-      type: 'boolean'
-    },
-    escapeMarkdown: {
-      alias: 'e',
-      type: 'boolean'
-    },
-    minify: {
-      alias: 'm',
-      type: 'boolean'
-    },
-    watch: {
-      alias: 'w',
-      type: 'boolean'
-    },
-    'clean': {
-      alias: 'c',
-      type: 'boolean'
-    },
-    out: {
-      alias: 'o',
-      type: 'string',
-      default: 'dist'
-    },
-    verbose: {
-      alias: 'v',
-      'type': 'boolean'
-    }
-  }
-})
+cli
+  .version('2.2.0')
+  .usage('[options] <dirs|files|globs>')
+  .option('-b, --use-block [boolean]', 'Content block in files', false)
+  .option('-c, --clean [boolean]', 'Use clean urls for output files', false)
+  .option('-d, --data <file|dir>', 'JSON data or yaml directory')
+  .option('-e, --escape-markdown [boolean]', 'Escape markdown', false)
+  .option('-m, --minify [boolean]', 'Minify output html', false)
+  .option('-o, --out <directory>', 'Output directory', 'dist')
+  .option('-t, --template <directory>', 'Template directory', process.cwd())
+  .option('-v, --verbose [boolean]', 'Show verbose', false)
+  .option('-w, --watch [boolean]', 'Watch file changes', false)
+  .parse(process.argv)
 
 /**
  * Get json form given directory or file. Return empty
@@ -80,52 +31,52 @@ const cli = meow(`
  * @returns {Object}
  */
 function readData () {
-  if (cli.flags.d) {
+  if (cli.data) {
     try {
-      if (fs.lstatSync(cli.flags.d).isDirectory()) {
-        return dataDir(path.resolve(cli.flags.d))
+      if (fs.lstatSync(cli.data).isDirectory()) {
+        return dataDir(path.resolve(cli.data))
       } else {
-        return JSON.parse(fs.readFileSync(cli.flags.d))
+        return JSON.parse(fs.readFileSync(cli.data).toString())
       }
     } catch (err) {
-      console.error(`${chalk.red(log.error)} Error reading data from ${cli.flags.d}`)
+      console.error(`${log.error} Error reading data from ${cli.data}`)
       process.exit(1)
     }
   } else {
-    console.log(`${chalk.yellow(log.warning)} Using empty global data`)
+    console.log(`${log.warning} Using empty global data`)
     return {}
   }
 }
 
 // use current directory for no input. first input otherwise
-let current = cli.input.length ? cli.input[0] : process.cwd()
+let current = cli.args.length ? cli.args[0] : process.cwd()
 let watchList = []
 
 // read template directory and add to watchlist
 try {
-  if (fs.lstatSync(cli.flags.t).isDirectory()) {
-    watchList.push(path.resolve(cli.flags.t))
+  if (fs.lstatSync(cli.template).isDirectory()) {
+    watchList.push(path.resolve(cli.template))
   }
 } catch (err) {
-  console.log(`${chalk.red(log.error)} Error reading template directory \n ${err}`)
+  console.log(`${log.error} Error reading template directory \n ${err}`)
   process.exit(1)
 }
 
-if (cli.input.length > 1) {
+if (cli.args.length > 1) {
   // for multiple inputs process each file and folder
-  cli.input.forEach(file => {
+  cli.args.forEach(file => {
     watchList.push(path.resolve(file))
-    njk(file, readData(), cli.flags)
+    njk(file, readData(), cli)
   })
 } else {
   // process current directory for single input
   watchList.push(path.resolve(current))
-  njk(current, readData(), cli.flags)
+  njk(current, readData(), cli)
 }
 
 // set up watcher for template and file changes
-if (cli.flags.watch) {
-  console.log(`${chalk.blue(log.info)} Running in watch mode`)
+if (cli.watch) {
+  console.log(`${log.info} Running in watch mode`)
   chokidar
     .watch(watchList, {
       ignoreInitial: true
@@ -133,17 +84,17 @@ if (cli.flags.watch) {
     .on('all', (event, file) => {
       if (isTemplate(file)) {
         // if a template is changed render everything again
-        console.log(`${chalk.blue(log.info)} Changed template ${chalk.yellow(path.relative(process.cwd(), file))}`)
-        if (cli.input.length > 1) {
-          cli.input.forEach(file => njk(file, readData(), cli.flags))
+        console.log(`${log.info} Changed template ${yellow(path.relative(process.cwd(), file))}`)
+        if (cli.args.length > 1) {
+          cli.args.forEach(file => njk(file, readData(), cli))
         } else {
-          njk(current, readData(), cli.flags)
+          njk(current, readData(), cli)
         }
       } else if (/\.njk|\.html|\.md|\.mdown|\.markdown/.test(path.extname(file))) {
         // if a single file is changed render that file
-        console.log(`${chalk.blue(log.info)} Changed ${chalk.yellow(path.relative(process.cwd(), file))}`)
-        cli.flags.parent = getParent(file)
-        njk(file, readData(), cli.flags)
+        console.log(`${log.info} Changed ${yellow(path.relative(process.cwd(), file))}`)
+        cli.parent = getParent(file)
+        njk(file, readData(), cli)
       }
     })
 }
@@ -157,13 +108,13 @@ if (cli.flags.watch) {
  * @returns {string}
  */
 function getParent (file) {
-  if (cli.input.length > 1) {
-    cli.input.forEach(p => {
+  if (cli.args.length > 1) {
+    cli.args.forEach(p => {
       if (file.indexOf(path.resolve(p)) !== -1) {
         return path.resolve(p)
       }
     })
-  } else if (file.indexOf(path.resolve(current) !== -1)) {
+  } else if (file.indexOf(path.resolve(current)) !== -1) {
     return path.resolve(current)
   }
   return process.cwd()
@@ -175,5 +126,5 @@ function getParent (file) {
  * @returns {boolean}
  */
 function isTemplate (file) {
-  return path.resolve(file).indexOf(path.resolve(cli.flags.t)) !== -1
+  return path.resolve(file).indexOf(path.resolve(cli.template)) !== -1
 }
