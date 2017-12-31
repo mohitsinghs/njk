@@ -22,31 +22,31 @@ npm i -g njk
 ```console
 $ njk --help
 
-  CLI tool to compile nunjucks with markdown and front-matter
+  Usage: njk [options] <dirs|files|globs>
 
-  Usage
-    njk <dirs|files|globs>
 
-  Options
-    --data, -d                JSON data
-    --template, -t            Template directory
-    --use-block, -b           Content block in files
-    --escape-markdown, -e     Escape markdown
-    --minify, -m              Minify output html
-    --watch, -w               Watch file changes
-    --clean, -c.              Use clean urls
-    --out, -o                 Output directory
-    --verbose, -v             Show verbose
+  Options:
 
-    If no option is passed, current directory is used
-
-  Examples
-    njk page.njk -d data.json -t templates
-    njk pages -d data -t templates
+    -V, --version                    output the version number
+    -b, --use-block [boolean]        Content block in files (default: false)
+    -c, --clean [boolean]            Use clean urls for output files (default: false)
+    -d, --data <file|dir>            JSON data or yaml directory
+    -e, --escape-markdown [boolean]  Escape markdown (default: false)
+    -m, --minify [boolean]           Minify output html (default: false)
+    -o, --out <directory>            Output directory (default: dist)
+    -t, --template <directory>       Template directory (default: cwd)
+    -v, --verbose [boolean]          Show verbose (default: false)
+    -w, --watch [boolean]            Watch file changes (default: false)
+    -h, --help                       output usage information
 ```
 
-### Notes
+### File Level Options
 Following options can be configured through front-matter of individual files.
  - __`useBlock`__ Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
  - __`clean`__ Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
- 
+
+## Examples
+```sh
+  njk page.njk -d data.json -t templates
+  njk pages -d data -t templates
+```

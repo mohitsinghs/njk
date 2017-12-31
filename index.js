@@ -1,16 +1,18 @@
 const fs = require('fs')
 const path = require('path')
-const _ = require('lodash')
+const preferLocal = require('prefer-local')
 const log = require('log-symbols')
-const chalk = require('chalk')
 const deepFiles = require('deep-files')
 const frontMatter = require('front-matter')
 const marked = require('marked')
 const nunjucks = require('nunjucks')
 const mkdirp = require('mkdirp').sync
 const minify = require('html-minifier').minify
+const has = require('lodash.has')
+const unescape = require('lodash.unescape')
+const yellow = require('chalk').default.yellow
 
-module.exports = (input, data, flags) => {
+module.exports = (input, data, cli) => {
   Promise
     .resolve(deepFiles(input, /\.njk|\.html|\.md|\.mdown|\.markdown/))
     .then(files => files
@@ -20,16 +22,16 @@ module.exports = (input, data, flags) => {
       .map(_renderTemplate)
       .map(_writeFile))
     .then(results => {
-      if (flags.v) {
+      if (cli.verbose) {
         // show detailed filenames for written files if verbose flag is passed
-        results.forEach(result => console.log(`${chalk.green(log.success)} Wrote ${chalk.yellow(result)}`))
+        results.forEach(result => console.log(`${log.success} Wrote ${yellow(result)}`))
       } else {
         // show count of written files otherwise
-        console.log(`${chalk.green(log.success)} Wrote ${results.length} ${results.length > 1 ? 'files' : 'file'}`)
+        console.log(`${log.success} Wrote ${results.length} ${results.length > 1 ? 'files' : 'file'}`)
       }
     })
     .catch(err => {
-      console.log(`${chalk.red(log.error)} ${err}`)
+      console.log(`${log.error} ${err}`)
       process.exit(1)
     })
 
@@ -46,10 +48,10 @@ module.exports = (input, data, flags) => {
     try {
       const fm = frontMatter(fs.readFileSync(path.resolve(file)).toString())
       return {
-        data: _.merge({}, data, {page: fm.attributes}),
+        data: Object.assign({}, data, {page: fm.attributes}),
         content: fm.body,
         info: path.parse(file),
-        haveAttributes: !_.isEmpty(fm.attributes)
+        haveAttributes: Object.keys(fm.attributes).length
       }
     } catch (err) {
       throw err
@@ -69,7 +71,7 @@ module.exports = (input, data, flags) => {
       const render = new marked.Renderer()
       render.text = text => unescape(text)
       // escape markdown if flag is passed
-      file.content = flags.escapeMarkdown ? marked(file.content) : marked(file.content, {renderer: render})
+      file.content = cli.escapeMarkdown ? marked(file.content) : marked(file.content, {renderer: render})
       return file
     }
     return file
@@ -84,15 +86,15 @@ module.exports = (input, data, flags) => {
    * @returns {Object}
    */
   function _wrapLayout (file) {
-    if (_.has(file.data, 'page.layout') && file.data.page.layout) {
-      const canUseBlock = _getOpts(file.data, 'page.useBlock', flags.useBlock)
+    if (preferLocal(file.data, 'page.layout', true)) {
+      const canUseBlock = preferLocal(file.data, 'page.useBlock', cli.useBlock)
       const extendLayout = `{% extends "${file.data.page.layout}.njk" %}`
       const extendBlock = `{% block content %}${file.content}{% endblock %}`
       file.content = `${extendLayout} ${canUseBlock ? extendBlock : file.content}`
       return file
     } else if (file.haveAttributes) {
       // file have front-matter but no layout property is found
-      throw Error(`No layout declared in front-matter or data for ${chalk.yellow(file.info.base)}`)
+      throw Error(`No layout declared in front-matter or data for ${yellow(file.info.base)}`)
     }
     return file
   }
@@ -106,29 +108,13 @@ module.exports = (input, data, flags) => {
    * @returns {Object}
    */
   function _renderTemplate (file) {
-    const compile = new nunjucks.Environment(new nunjucks.FileSystemLoader(flags.t))
+    const compile = new nunjucks.Environment(new nunjucks.FileSystemLoader(cli.template))
     try {
       file.content = compile.renderString(file.content, file.data)
     } catch (err) {
-      throw Error(`Error rendering ${chalk.yellow(file.info.base)} \n ${err}`)
+      throw Error(`Error rendering ${yellow(file.info.base)} \n ${err}`)
     }
     return file
-  }
-
-  /**
-   * If an Object have an inner property with a boolean value
-   * and have a global value then returns a boolean value
-   * preferring inner property over global.
-   *
-   * @arg {Object}  src  - source object containing inner property
-   * @arg {string}  key  - key of the inner property
-   * @arg {boolean} prop - value of global property
-   *
-   * @returns {boolean}
-   */
-  function _getOpts (src, key, prop) {
-    let propExist = _.has(src, key)
-    return (propExist && src[key]) || (!propExist && prop)
   }
 
   /**
@@ -138,19 +124,19 @@ module.exports = (input, data, flags) => {
    */
   function _writeFile (file) {
     try {
-      if (flags.m) {
+      if (cli.minify) {
         // minify html if flag is passed
         file.content = minify(file.content, {collapseWhitespace: true})
       }
       // for folders get relative path of file
-      let dest = path.join(flags.o, path.relative(input, file.info.dir))
+      let dest = path.join(cli.out, path.relative(input, file.info.dir))
       if (fs.lstatSync(input).isFile()) {
         // for single file use parent directory if property found,
         // current directory otherwise
-        dest = path.join(flags.o, path.relative(_.has(flags, 'parent') ? flags.parent : process.cwd(), file.info.dir))
+        dest = path.join(cli.out, path.relative(has(cli, 'parent') ? cli.parent : process.cwd(), file.info.dir))
       }
       let destfile = path.join(dest, `${file.info.name}.html`)
-      if (_getOpts(file.data, 'page.clean', flags.c)) {
+      if (preferLocal(file.data, 'page.clean', cli.clean)) {
         // for clean urls, use filename as folder
         dest = path.join(dest, file.info.name)
         destfile = path.join(dest, 'index.html')
@@ -159,7 +145,7 @@ module.exports = (input, data, flags) => {
       fs.writeFileSync(destfile, file.content)
       return destfile
     } catch (err) {
-      throw Error(`Error writing ${chalk.yellow(file.info.base)} \n ${err}`)
+      throw Error(`Error writing ${yellow(file.info.base)} \n ${err}`)
     }
   }
 }

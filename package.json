@@ -31,16 +31,18 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "chokidar": "^1.7.0",
+    "commander": "^2.12.2",
     "data-dir": "^1.0.1",
     "deep-files": "^1.0.0",
     "front-matter": "^2.3.0",
     "html-minifier": "^3.5.7",
-    "lodash": "^4.17.4",
+    "lodash.has": "^4.5.2",
+    "lodash.unescape": "^4.0.1",
     "log-symbols": "^2.1.0",
     "marked": "^0.3.7",
-    "meow": "^4.0.0",
     "mkdirp": "^0.5.1",
-    "nunjucks": "^3.0.1"
+    "nunjucks": "^3.0.1",
+    "prefer-local": "^1.0.2"
   },
   "devDependencies": {
     "standard": "^10.0.3"
