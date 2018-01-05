@@ -30,7 +30,7 @@
   "homepage": "https://github.com/mohitsinghs/njk#readme",
   "dependencies": {
     "chalk": "^2.3.0",
-    "chokidar": "^1.7.0",
+    "chokidar": "^2.0.0",
     "commander": "^2.12.2",
     "data-dir": "^1.0.1",
     "deep-files": "^1.0.0",
