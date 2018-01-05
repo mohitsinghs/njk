@@ -22,7 +22,7 @@
     "markdown",
     "front-matter"
   ],
-  "author": "Mohit Singh <mohit@mohitsingh.in> (https://mohitsingh.in)",
+  "author": "Mohit Singh <mohit@mohitsingh.in> (https://mohitsingh.in/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mohitsinghs/njk/issues"
@@ -35,11 +35,11 @@
     "data-dir": "^1.0.1",
     "deep-files": "^1.0.0",
     "front-matter": "^2.3.0",
-    "html-minifier": "^3.5.7",
+    "html-minifier": "^3.5.8",
     "lodash.has": "^4.5.2",
     "lodash.unescape": "^4.0.1",
     "log-symbols": "^2.1.0",
-    "marked": "^0.3.7",
+    "marked": "^0.3.9",
     "mkdirp": "^0.5.1",
     "nunjucks": "^3.0.1",
     "prefer-local": "^1.0.2"

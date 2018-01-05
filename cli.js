@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 'use strict'
 const fs = require('fs')
 const path = require('path')
@@ -11,7 +10,10 @@ const njk = require('./')
 const yellow = require('chalk')['yellow']
 
 cli
-  .version('2.2.0')
+  .version(
+    `nunjucks version: ${require('nunjucks/package.json').version}
+     njk version: ${require('./package.json').version}`
+  )
   .usage('[options] <dirs|files|globs>')
   .option('-b, --use-block [boolean]', 'Content block in files', false)
   .option('-c, --clean [boolean]', 'Use clean urls for output files', false)
@@ -22,6 +24,33 @@ cli
   .option('-t, --template <directory>', 'Template directory', process.cwd())
   .option('-v, --verbose [boolean]', 'Show verbose', false)
   .option('-w, --watch [boolean]', 'Watch file changes', false)
+  .on('--help', () => {
+    console.log(`
+  Examples
+
+    # Render all files in the current directory:
+    $ njk
+
+    # Render \`page.njk\` to \`dist/page.html\`:
+    $ njk page.njk
+
+    # Render all files in the \`pages\` directory:
+    $ njk pages
+
+    # Render all markdown files in the \`pages\` directory:
+    $ njk pages/**/*.md
+
+    # Render all files in the \`pages\` directory
+    # with templates from \`templates\` directory,
+    # and data from \`data.json\`:
+    $ njk pages -t templates -d data.json
+
+    # Render all files in the \`pages\` directory
+    # with templates from \`templates\` directory,
+    # and yaml data from \`data\` directory:
+    $ njk pages -t templates -d data
+    `)
+  })
   .parse(process.argv)
 
 /**
@@ -36,7 +65,7 @@ function readData () {
       if (fs.lstatSync(cli.data).isDirectory()) {
         return dataDir(path.resolve(cli.data))
       } else {
-        return JSON.parse(fs.readFileSync(cli.data).toString())
+        return JSON.parse(fs.readFileSync(cli.data), 'utf8')
       }
     } catch (err) {
       console.error(`${log.error} Error reading data from ${cli.data}`)

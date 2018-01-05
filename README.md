@@ -17,8 +17,6 @@ npm i -g njk
 
 ## Uses
 
-<img src="media/screenshot.png" width="437">
-
 ```console
 $ njk --help
 
@@ -45,8 +43,39 @@ Following options can be configured through front-matter of individual files.
  - __`useBlock`__ Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
  - __`clean`__ Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
 
-## Examples
+### Examples
+Render all files in the current directory:
+
 ```sh
-  njk page.njk -d data.json -t templates
-  njk pages -d data -t templates
+$ njk
+```
+
+Render `page.njk` to `dist/page.html`:
+
+```sh
+$ njk page.njk
+```
+
+Render all files in the `pages` directory:
+
+```sh
+$ njk pages
+```
+
+Render all markdown files in the `pages` directory:
+
+```sh
+$ njk pages/**/*.md
+```
+
+Render all files in the `pages` directory with templates from `templates` directory and data from `data.json`:
+
+```sh
+$ njk pages -t templates -d data.json
+```
+
+Render all files in the `pages` directory with templates from `templates` directory and yaml data from `data` directory:
+
+```sh
+$ njk pages -t templates -d data
 ```

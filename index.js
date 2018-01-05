@@ -86,7 +86,7 @@ module.exports = (input, data, cli) => {
    * @returns {Object}
    */
   function _wrapLayout (file) {
-    if (preferLocal(file.data, 'page.layout', true)) {
+    if (preferLocal(file.data, 'page.layout')) {
       const canUseBlock = preferLocal(file.data, 'page.useBlock', cli.useBlock)
       const extendLayout = `{% extends "${file.data.page.layout}.njk" %}`
       const extendBlock = `{% block content %}${file.content}{% endblock %}`
