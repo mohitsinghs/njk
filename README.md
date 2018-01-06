@@ -1,5 +1,7 @@
 # njk
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mohitsinghs/njk.svg)](https://greenkeeper.io/)
+
 > Cli tool to render nunjucks templates with markdown and front-matter.
 
 [![Build Status](https://travis-ci.org/mohitsinghs/njk.svg)](https://travis-ci.org/mohitsinghs/njk)
