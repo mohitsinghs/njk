@@ -4,7 +4,6 @@
 
 [![Build Status](https://travis-ci.org/mohitsinghs/njk.svg)](https://travis-ci.org/mohitsinghs/njk)
 [![npm](https://badge.fury.io/js/njk.svg)](http://badge.fury.io/js/njk)
-[![Greenkeeper badge](https://badges.greenkeeper.io/mohitsinghs/njk.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://gemnasium.com/badges/github.com/mohitsinghs/njk.svg)](https://gemnasium.com/github.com/mohitsinghs/njk)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![license MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/mohitsinghs/njk/blob/master/LICENSE)

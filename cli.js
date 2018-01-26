@@ -7,7 +7,7 @@ const log = require('log-symbols')
 const dataDir = require('data-dir')
 const chokidar = require('chokidar')
 const njk = require('./')
-const yellow = require('chalk')['yellow']
+const yellow = require('chalk').yellow
 
 cli
   .version(
@@ -132,7 +132,7 @@ if (cli.watch) {
  * Get parent directory passed as input for given file.
  * Use current directory otherwise.
  *
- * @arg {string} file - path of the file
+ * @param {string} file - path of the file
  *
  * @returns {string}
  */
@@ -151,6 +151,8 @@ function getParent (file) {
 
 /**
  * Check if given file is inside template directory or not.
+ *
+ * @param {string} file - path of the file
  *
  * @returns {boolean}
  */

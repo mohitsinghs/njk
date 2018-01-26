@@ -40,7 +40,7 @@ module.exports = (input, data, cli) => {
    * containing data, file contents, file info and a boolean whether
    * front-matter is present or not
    *
-   * @arg {string}  file  - Source file
+   * @param {string}  file  - Source file
    *
    * @returns {Object}
    */
@@ -62,7 +62,7 @@ module.exports = (input, data, cli) => {
    * If file have a markdown extension then render file contents
    * and return modified file.
    *
-   * @arg {Object}  file  - Source file
+   * @param {Object}  file  - Source file
    *
    * @returns {Object}
    */
@@ -81,7 +81,7 @@ module.exports = (input, data, cli) => {
    * Wrap an extends tag and a content block around file contents
    * and return modified file.
    *
-   * @arg {Object}  file  - Source file
+   * @param {Object}  file  - Source file
    *
    * @returns {Object}
    */
@@ -103,7 +103,7 @@ module.exports = (input, data, cli) => {
    * Render nunjucks template in file contents and return
    * modified file.
    *
-   * @arg {Object}  file  - Source file
+   * @param {Object}  file  - Source file
    *
    * @returns {Object}
    */
