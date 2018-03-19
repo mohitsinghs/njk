@@ -39,12 +39,12 @@
     "lodash.has": "^4.5.2",
     "lodash.unescape": "^4.0.1",
     "log-symbols": "^2.2.0",
-    "marked": "^0.3.16",
+    "marked": "^0.3.17",
     "mkdirp": "^0.5.1",
-    "nunjucks": "^3.1.0",
+    "nunjucks": "^3.1.2",
     "prefer-local": "^1.0.2"
   },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^11.0.1"
   }
 }
