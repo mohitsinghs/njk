@@ -7,13 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.3] - 2018-05-21
+
+### Deprecated
+* nodejs 4 is no longer maintained. Support for it will be removed in the next release.
+
 ### Security
-* Upgrade dependencies
+* Upgraded dependencies.
 
 ## [2.2.2] - 2018-02-19
 
 ### Security
-* Upgrade dependencies
+* Upgraded dependencies
 
 ## [2.2.1] - 2018-01-06
 
@@ -71,7 +76,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 * Specify global data for templates as a json file or a directory with yaml files
 * Access data specified in front-matter with page object inside templates
 
-[Unreleased]: https://github.com/mohitsinghs/njk/compare/v2.2.2...HEAD
+[Unreleased]: https://github.com/mohitsinghs/njk/compare/v2.2.3...HEAD
+[2.2.3]: https://github.com/mohitsinghs/njk/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/mohitsinghs/njk/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/mohitsinghs/njk/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/mohitsinghs/njk/compare/v2.1.3...v2.2.0
