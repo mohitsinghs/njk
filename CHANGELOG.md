@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0] - 2018-07-23
+
 ### Added
 
 - Multiple template folders can be specified by seperating them with a comma(`,`)
@@ -104,7 +106,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v2.2.3...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/mohitsinghs/njk/compare/v2.2.3...v3.0.0
 [2.2.3]: https://github.com/mohitsinghs/njk/compare/v2.2.2...v2.2.3
 [2.2.2]: https://github.com/mohitsinghs/njk/compare/v2.2.1...v2.2.2
 [2.2.1]: https://github.com/mohitsinghs/njk/compare/v2.2.0...v2.2.1
