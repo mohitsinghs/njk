@@ -10,7 +10,6 @@ const chalk = require('chalk')
  * For a given file or array of files render html pages
  *
  * @param {string} input files or array of files to process
- * @param {object} data data associated with file
  * @param {object} options extra configuration
  */
 module.exports = (source, opts) => {
