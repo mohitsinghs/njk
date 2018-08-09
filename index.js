@@ -29,9 +29,9 @@ module.exports = (source, opts) => {
 
   function processDir (dir, opts) {
     let count = 0
+    opts.rootPath = dir
     deepFiles(dir, '*.{njk,html,md,mdown,markdown}')
       .forEach(file => {
-        opts.rootPath = dir
         processFile(file, opts)
         count++
       })
