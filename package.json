@@ -41,6 +41,6 @@
     "prefer-local": "^1.0.2"
   },
   "devDependencies": {
-    "standard": "^11.0.1"
+    "standard": "^12.0.0"
   }
 }
