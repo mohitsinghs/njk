@@ -7,3 +7,15 @@ before_install:
 - npm i -g npm
 notifications:
   email: false
+jobs:
+  include:
+    - stage: npm release
+      node_js: "10"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: "mohit@mohitsingh.in"
+        api_key: $NPM_API_KEY
+        on:
+          tags: true
+          repo: mohitsinghs/njk
