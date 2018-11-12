@@ -1,15 +1,20 @@
-<h1 align="center"><br>njk<br></h1>
-
-<p align="center">Cli tool to render nunjucks templates with markdown and front-matter.</p>
+<h1 align="center">njk</h1>
 
 <p align="center">
-  <a href="https://travis-ci.org/mohitsinghs/njk"><img src="https://travis-ci.org/mohitsinghs/njk.svg" alt="Build Status"></a>
+  <a href="https://travis-ci.com/mohitsinghs/njk"><img src="https://travis-ci.com/mohitsinghs/njk.svg" alt="Build Status"></a>
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg" alt="npm version"></a>
   <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://david-dm.org/mohitsinghs/njk/status.svg" alt="dependencies Status"></a>
   <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://david-dm.org/mohitsinghs/njk/dev-status.svg" alt="devDependencies Status"></a>
   <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="code style - standard"></a>
   <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license MIT"></a>
 </p>
+
+<p align="center">
+  <b>Render nunjucks templates with markdown and front-matter</b><br/>
+  <sub>generate ( and minify ) html based on nunjucks templates, markdown, front-matter and json/yml data</sub>
+</p>
+
+<br />
 
 ## Install
 
@@ -24,7 +29,7 @@ npm i -g njk
 ```console
 $ njk --help
 
-  Usage: cli <files|dirs|globs> [options]
+  Usage: njk <files|dirs|globs> [options]
 
   Options:
 
@@ -63,6 +68,7 @@ Following options can be configured when using `njk` programatically.
 - **`data`** JSON data to use as global data while rendering templates
 - **`templates`** tempalate paths as an array
 - **`out`** Path of the output directory
+- **`watch`** Watch for file changes
 - **`minify`** If true output is minified
 - **`minifyOpts`** takes the same options as [html-minifier](https://github.com/kangax/html-minifier). Works with minify enabled
 

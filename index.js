@@ -4,6 +4,7 @@ const deepFiles = require('deep-files')
 const render = require('./lib/render')
 const write = require('./lib/write')
 const logger = require('./lib/logger')
+const printResult = require('./lib/print-result')
 const chalk = require('chalk')
 
 /**
@@ -15,7 +16,7 @@ const chalk = require('chalk')
 module.exports = (source, opts) => {
   opts.rootPath || (opts.rootPath = process.cwd())
   if (Array.isArray(source)) {
-    // process each file of the array
+    // multiple files/directories
     source.forEach(file => {
       if (fs.lstatSync(file).isFile()) {
         processFile(file, opts)
@@ -24,24 +25,23 @@ module.exports = (source, opts) => {
       }
     })
   } else if (fs.lstatSync(source).isFile()) {
+    // single/changed file
     processFile(source, opts)
+      .then(res => {
+        logger.success(chalk`Wrote {yellow ${path.relative(opts.out, res)}}`)
+      })
   }
 
   function processDir (dir, opts) {
-    let count = 0
+    const time = process.hrtime()
     opts.rootPath = dir
-    deepFiles(dir, '*.{njk,html,md,mdown,markdown}')
-      .forEach(file => {
-        processFile(file, opts)
-        count++
-      })
-    if (!opts.verbose) {
-      logger.success(`Wrote ${count} file(s)`)
-    }
+    const results = deepFiles(dir, '*.{njk,html,md,mdown,markdown}')
+      .map(f => processFile(f, opts))
+    printResult(results, opts, time)
   }
 
   function processFile (file, opts) {
-    render(file, opts)
+    return render(file, opts)
       .then(result => write(result, opts))
       .catch(err => logger.fail(chalk`Error processing {yellow ${path.basename(file)}}`, err))
   }

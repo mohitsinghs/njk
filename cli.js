@@ -57,6 +57,7 @@ const opts = {
   data: getData(cli.data),
   templates,
   out: cli.out,
+  watch: cli.watch,
   minify: !cli.watch,
   minifyOpts: {
     collapseBooleanAttributes: true,
