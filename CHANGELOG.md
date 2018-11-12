@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.3] - 2018-11-12
+
+### Fixed
+
+- Fixed crash when no data is passed
+- Fixed crash when minify fails on empty content
+- Made build output useful with time log and gzip size
+
 ## [3.0.2] - 2018-10-19
 
 ### Security
@@ -122,7 +130,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.2...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.3...HEAD
+[3.0.3]: https://github.com/mohitsinghs/njk/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/mohitsinghs/njk/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/mohitsinghs/njk/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/mohitsinghs/njk/compare/v2.2.3...v3.0.0
