@@ -5,7 +5,7 @@ const chokidar = require('chokidar')
 const chalk = require('chalk')
 const logger = require('./lib/logger')
 const getData = require('./lib/get-data')
-const { isInside, addIfExists } = require('./lib/utils')
+const { isInside, getExisting } = require('./lib/utils')
 const api = require('./')
 
 cli
@@ -31,24 +31,9 @@ cli
   .parse(process.argv)
 
 // list of root paths
-const rootPaths = []
-if (cli.args.length) {
-  cli.args.forEach(file => addIfExists(file, rootPaths))
-} else {
-  logger.warn('Using current directory as source')
-  rootPaths.push(process.cwd())
-}
-
+const rootPaths = getExisting(cli.args, 'sources')
 // list of template paths
-const templates = []
-if (Array.isArray(cli.template)) {
-  cli.template.forEach(t => addIfExists(t, templates))
-} else if (cli.template) {
-  addIfExists(cli.template, templates)
-} else {
-  logger.warn('Using current directory as template path')
-  templates.push(process.cwd())
-}
+const templates = getExisting(cli.template, 'templates')
 
 const opts = {
   verbose: cli.verbose,
