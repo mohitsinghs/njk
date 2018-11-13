@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.4] - 2018-11-13
+
+### Fixed
+
+- Fixed a crash when rendering output is null
+
 ## [3.0.3] - 2018-11-12
 
 ### Fixed
@@ -130,7 +136,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.3...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.4...HEAD
+[3.0.4]: https://github.com/mohitsinghs/njk/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/mohitsinghs/njk/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/mohitsinghs/njk/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/mohitsinghs/njk/compare/v3.0.0...v3.0.1
