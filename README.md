@@ -49,7 +49,7 @@ $ njk --help
     https://github.com/mohitsinghs/njk/issues/new
 ```
 
-Multiple template directories and be passed, seperated by comma(,).
+> Multiple template directories can be passed, seperated by comma `,`
 
 ## File Options
 
