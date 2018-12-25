@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.5] - 2018-12-25
+
+### Removed
+
+- Removed API options from README as they are not quite stable.
+
+### Fixed
+
+- Fixed rendering of glob files. They were rendered previously based on current directory, Now there parent directory is used as root.
+
+### Security
+
+- Upgraded marked and nunjucks
+
 ## [3.0.4] - 2018-11-13
 
 ### Fixed
@@ -136,7 +150,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.4...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.5...HEAD
+[3.0.5]: https://github.com/mohitsinghs/njk/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/mohitsinghs/njk/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/mohitsinghs/njk/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/mohitsinghs/njk/compare/v3.0.1...v3.0.2
