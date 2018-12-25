@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+const fs = require('fs')
 const path = require('path')
 const cli = require('commander')
 const chokidar = require('chokidar')
 const chalk = require('chalk')
 const logger = require('./lib/logger')
 const getData = require('./lib/get-data')
-const { isInside, getExisting } = require('./lib/utils')
+const { isInside, getExisting, pathtype } = require('./lib/utils')
 const api = require('./')
 
 cli
@@ -30,16 +31,19 @@ cli
   })
   .parse(process.argv)
 
-// list of root paths
-const rootPaths = getExisting(cli.args, 'sources')
-// list of template paths
-const templates = getExisting(cli.template, 'templates')
+// list of files to process
+const files = getExisting(cli.args, pathtype.SOURCES)
+// list rootPaths for files and directories
+const rootPaths = files.map(f => (fs.lstatSync(f).isDirectory()) ? f : path.dirname(f))
+// get template paths
+const templates = getExisting(cli.template, pathtype.TEMPLATES)
 
 const opts = {
   verbose: cli.verbose,
   block: cli.block,
   clean: cli.clean,
   data: getData(cli.data),
+  rootPaths,
   templates,
   out: cli.out,
   watch: cli.watch,
@@ -54,10 +58,11 @@ const opts = {
   }
 }
 
-api(rootPaths, opts)
+api(files, opts)
 
 // list of files and directories to watch
 const watchList = []
+
 if (cli.watch) {
   watchList.push(...templates, ...rootPaths)
   // set up watcher and watch for file chanegs
@@ -67,17 +72,11 @@ if (cli.watch) {
     if (isInside(file, templates)) {
       // if a template is changed render everything again
       logger.log(chalk`Changed template {yellow ${path.relative(process.cwd(), file)}}`)
-      api(rootPaths, opts)
+      api(files, opts)
     } else if (/\.njk|\.html|\.md|\.mdown|\.markdown/.test(path.extname(file))) {
       // if a file is changed render that file
       logger.log(chalk`Changed {yellow ${path.relative(process.cwd(), file)}}`)
-      api(file, Object.assign({}, opts, getRootPath(file)))
+      api(file, opts)
     }
   })
-}
-
-function getRootPath (file) {
-  return {
-    rootPath: isInside(file, rootPaths) || process.cwd()
-  }
 }

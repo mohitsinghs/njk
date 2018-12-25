@@ -14,12 +14,14 @@ const chalk = require('chalk')
  * @param {object} options extra configuration
  */
 module.exports = (source, opts) => {
-  opts.rootPath || (opts.rootPath = process.cwd())
   if (Array.isArray(source)) {
     // multiple files/directories
     source.forEach(file => {
       if (fs.lstatSync(file).isFile()) {
         processFile(file, opts)
+          .then(res => {
+            logger.success(chalk`Wrote {yellow ${path.relative(opts.out, res)}}`)
+          })
       } else if (fs.lstatSync(file).isDirectory()) {
         processDir(file, opts)
       }
@@ -34,7 +36,6 @@ module.exports = (source, opts) => {
 
   function processDir (dir, opts) {
     const time = process.hrtime()
-    opts.rootPath = dir
     const results = deepFiles(dir, '*.{njk,html,md,mdown,markdown}')
       .map(f => processFile(f, opts))
     printResult(results, opts, time)
