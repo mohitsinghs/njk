@@ -49,8 +49,6 @@ $ njk --help
     https://github.com/mohitsinghs/njk/issues/new
 ```
 
-> Multiple template directories can be passed, seperated by comma `,`
-
 ## File Options
 
 Following options can be configured through front-matter of individual files.
@@ -58,20 +56,7 @@ Following options can be configured through front-matter of individual files.
 - **`block`** Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
 - **`clean`** Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
 
-## API Options
+## Additional Notes
 
-Following options can be configured when using `njk` programatically.
-
-- **`verbose`** Additional log is printed
-- **`block`** Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
-- **`clean`** Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
-- **`data`** JSON data to use as global data while rendering templates
-- **`templates`** tempalate paths as an array
-- **`out`** Path of the output directory
-- **`watch`** Watch for file changes
-- **`minify`** If true output is minified
-- **`minifyOpts`** takes the same options as [html-minifier](https://github.com/kangax/html-minifier). Works with minify enabled
-
-### Notes
-
-- `minifyOpts` can't be configured using CLI. Minify is enabled by default except in watch mode.
+  - **passing multiple template directories** - Multiple template directories can be passed, seperated by comma `,`
+  - **html minification** - HTML is minifed by default except in watch mode.
