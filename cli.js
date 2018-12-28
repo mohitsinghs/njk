@@ -6,6 +6,7 @@ const chokidar = require('chokidar')
 const chalk = require('chalk')
 const logger = require('./lib/logger')
 const getData = require('./lib/get-data')
+const globby = require('globby').sync
 const { isInside, getExisting, pathtype } = require('./lib/utils')
 const api = require('./')
 
@@ -32,7 +33,7 @@ cli
   .parse(process.argv)
 
 // list of files to process
-const files = getExisting(cli.args, pathtype.SOURCES)
+const files = getExisting(globby(cli.args, { absolute: true }), pathtype.SOURCES)
 // list rootPaths for files and directories
 const rootPaths = files.map(f => (fs.lstatSync(f).isDirectory()) ? f : path.dirname(f))
 // get template paths
