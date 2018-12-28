@@ -40,7 +40,7 @@ $ njk --help
     -w, --watch            watch for file changes
 
     -d, --data <file|dir>  JSON data or yaml directory
-    -t, --template <dirs>  Template directories
+    -t, --template <dirs>  Template directories (same as searchPaths)
 
     -o, --out <dir>        Output directory (default: dist)
     -h, --help             output usage information
@@ -58,5 +58,5 @@ Following options can be configured through front-matter of individual files.
 
 ## Additional Notes
 
-  - **passing multiple template directories** - Multiple template directories can be passed, seperated by comma `,`
-  - **html minification** - HTML is minifed by default except in watch mode.
+- **passing multiple template directories** - Multiple template directories can be passed, seperated by comma `,`
+- **html minification** - HTML is minifed by default except in watch mode.

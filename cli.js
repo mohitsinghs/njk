@@ -22,7 +22,7 @@ cli
   .option('-c, --clean', 'use clean urls for output files')
   .option('-w, --watch', 'watch for file changes\n')
   .option('-d, --data <file|dir>', 'JSON data or JSON/yaml directory')
-  .option('-t, --template <dirs>', 'Template directories\n', t => t.split(','))
+  .option('-t, --template <dirs>', 'Template directories (same as searchPaths)\n', t => t.split(','))
   .option('-o, --out <dir>', 'Output directory', 'dist')
   .on('--help', () => {
     console.log(chalk`
