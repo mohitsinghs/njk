@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.6] - 2018-12-29
+
+### Fixed
+
+- Clarification about templates flag being same as searchPaths of nunjucks `FileSystemLoader`
+- Glob patterns are now handled correctly using [globby](https://npm.im/globby)
+
 ## [3.0.5] - 2018-12-25
 
 ### Removed
@@ -150,7 +157,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.5...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.6...HEAD
+[3.0.6]: https://github.com/mohitsinghs/njk/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/mohitsinghs/njk/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/mohitsinghs/njk/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/mohitsinghs/njk/compare/v3.0.2...v3.0.3
