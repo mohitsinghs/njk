@@ -47,14 +47,19 @@ $ njk --help
 
     Having troubles ? Just file an issue:
     https://github.com/mohitsinghs/njk/issues/new
+    Or look at some examples:
+    {cyan https://github.com/mohitsinghs/njk/wiki}
 ```
 
 ## File Options
 
 Following options can be configured through front-matter of individual files.
 
+- **`layout`** parent layout/template to use for rendering a file. This inserts a `extends` tag automatically.
 - **`block`** Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
 - **`clean`** Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
+
+See [wiki](https://github.com/mohitsinghs/njk/wiki) for some examples.
 
 ## Additional Notes
 
