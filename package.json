@@ -36,6 +36,7 @@
     "fs-extra": "^7.0.0",
     "globby": "^8.0.1",
     "html-minifier": "^3.5.21",
+    "lodash.merge": "^4.6.1",
     "log-symbols": "^2.2.0",
     "marked": "^0.5.2",
     "nunjucks": "^3.1.6",
