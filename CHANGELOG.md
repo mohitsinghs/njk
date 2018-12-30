@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.7] - 2018-12-30
+
+### Fixed
+
+- Auto appending `.njk` extensions to layouts in front-matter made optional to allow specifying different layout names and extensions
+- Errors during rendering nunjucks templates are no longer ignored with null output
+- Using deep-merging instead of Object.assign to fix cases were global data was not honored when front-matter was null
+
 ## [3.0.6] - 2018-12-29
 
 ### Fixed
@@ -157,7 +165,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.6...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.7...HEAD
+[3.0.7]: https://github.com/mohitsinghs/njk/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/mohitsinghs/njk/compare/v3.0.5...v3.0.6
 [3.0.5]: https://github.com/mohitsinghs/njk/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/mohitsinghs/njk/compare/v3.0.3...v3.0.4
