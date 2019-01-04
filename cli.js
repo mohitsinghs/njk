@@ -70,8 +70,11 @@ if (cli.watch) {
   watchList.push(...templates, ...rootPaths)
   // set up watcher and watch for file chanegs
   logger.log('Running in watch mode')
-  const watcher = chokidar.watch(watchList, { ignoreInitial: true })
-  watcher.on('all', (event, file) => {
+  const watcher = chokidar.watch(watchList, {
+    ignored: /(^|[/\\])\../,
+    ignoreInitial: true
+  })
+  watcher.on('change', file => {
     if (isInside(file, templates)) {
       // if a template is changed render everything again
       logger.log(chalk`Changed template {yellow ${path.relative(process.cwd(), file)}}`)
