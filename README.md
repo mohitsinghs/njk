@@ -48,7 +48,7 @@ $ njk --help
     Having troubles ? Just file an issue:
     https://github.com/mohitsinghs/njk/issues/new
     Or look at some examples:
-    {cyan https://github.com/mohitsinghs/njk/wiki}
+    https://github.com/mohitsinghs/njk/wiki
 ```
 
 ## File Options
