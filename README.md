@@ -5,7 +5,6 @@
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg" alt="npm version"></a>
   <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://david-dm.org/mohitsinghs/njk/status.svg" alt="dependencies Status"></a>
   <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://david-dm.org/mohitsinghs/njk/dev-status.svg" alt="devDependencies Status"></a>
-  <a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="code style - standard"></a>
   <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license MIT"></a>
 </p>
 
@@ -20,13 +19,13 @@
 
 Install with [npm](https://npm.im/njk)
 
-```console
+```sh
 npm i -g njk
 ```
 
 ## CLI Options
 
-```console
+```sh
 $ njk --help
 
   Usage: njk <files|dirs|globs> [options]

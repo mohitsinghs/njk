@@ -17,13 +17,19 @@ module.exports = (source, opts) => {
   const processFile = file => {
     return render(file, opts)
       .then(result => write(result, opts))
-      .catch(err => logger.fail(chalk`Error processing {yellow ${path.basename(file)}}`, err))
+      .catch(err =>
+        logger.fail(
+          chalk`Error processing {yellow ${path.basename(file)}}`,
+          err
+        )
+      )
   }
   // multiple files
   if (Array.isArray(source)) {
     const time = process.hrtime()
     printResult(source.filter(isFile).map(processFile), opts, time)
-  } else if (fs.lstatSync(source).isFile()) {
+  }
+  if (isFile(source)) {
     // single/changed file
     const time = process.hrtime()
     printResult([processFile(source)], opts, time)

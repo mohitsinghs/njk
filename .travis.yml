@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - "6"
-  - "8"
-  - "10"
-  - "11"
+  - '8'
+  - '10'
+  - '11'
 before_install:
   - npm i -g npm
 notifications:
@@ -11,11 +10,11 @@ notifications:
 jobs:
   include:
     - stage: npm release
-      node_js: "10"
+      node_js: '10'
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm
-        email: "mohit@mohitsingh.in"
+        email: 'mohit@mohitsingh.in'
         api_key: $NPM_API_KEY
         on:
           tags: true

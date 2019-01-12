@@ -11,10 +11,12 @@ const { isInside, getExisting, pathtype } = require('./lib/utils')
 const api = require('./')
 
 cli
-  .version(chalk`
+  .version(
+    chalk`
     {yellow njk}: ${require('./package.json').version}
     {yellow nunjucks}: ${require('nunjucks/package.json').version}
-  `)
+  `
+  )
   .arguments('<files|dirs|globs>')
   .usage(chalk`{green <files|dirs|globs>} [options]`)
   .option('-v, --verbose', 'print additional log')
@@ -22,7 +24,11 @@ cli
   .option('-c, --clean', 'use clean urls for output files')
   .option('-w, --watch', 'watch for file changes\n')
   .option('-d, --data <file|dir>', 'JSON data or JSON/yaml directory')
-  .option('-t, --template <dirs>', 'Template directories (same as searchPaths)\n', t => t.split(','))
+  .option(
+    '-t, --template <dirs>',
+    'Template directories (same as searchPaths)\n',
+    t => t.split(',')
+  )
   .option('-o, --out <dir>', 'Output directory', 'dist')
   .on('--help', () => {
     console.log(chalk`
@@ -35,9 +41,14 @@ cli
   .parse(process.argv)
 
 // list of files to process
-const files = getExisting(globby(cli.args, { absolute: true }), pathtype.SOURCES)
+const files = getExisting(
+  globby(cli.args, { absolute: true }),
+  pathtype.SOURCES
+)
 // list rootPaths for files and directories
-const rootPaths = files.map(f => (fs.lstatSync(f).isDirectory()) ? f : path.dirname(f))
+const rootPaths = files.map(f =>
+  fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
+)
 // get template paths
 const templates = getExisting(cli.template, pathtype.TEMPLATES)
 
@@ -77,9 +88,13 @@ if (cli.watch) {
   watcher.on('change', file => {
     if (isInside(file, templates)) {
       // if a template is changed render everything again
-      logger.log(chalk`Changed template {yellow ${path.relative(process.cwd(), file)}}`)
+      logger.log(
+        chalk`Changed template {yellow ${path.relative(process.cwd(), file)}}`
+      )
       api(files, opts)
-    } else if (/\.njk|\.html|\.md|\.mdown|\.markdown/.test(path.extname(file))) {
+    } else if (
+      /\.njk|\.html|\.md|\.mdown|\.markdown/.test(path.extname(file))
+    ) {
       // if a file is changed render that file
       logger.log(chalk`Changed {yellow ${path.relative(process.cwd(), file)}}`)
       api(file, opts)
