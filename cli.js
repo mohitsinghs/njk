@@ -49,8 +49,14 @@ const files = getExisting(
 const rootPaths = files.map(f =>
   fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
 )
-// get template paths
-const templates = getExisting(cli.template, pathtype.TEMPLATES)
+
+const templateFiles = getExisting(
+  globby(cli.template, { absolute: true }),
+  pathtype.TEMPLATES
+)
+const templates = templateFiles.map(f =>
+  fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
+)
 
 const opts = {
   verbose: cli.verbose,
