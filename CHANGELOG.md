@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.1.0] - 2018-06-08
+
+## Added
+
+- Use nested folders in templates @borracciaBlu
+
+# Security
+
+- Upgrade dependencies
+
 ## [3.0.8] - 2018-01-08
 
 ### Fixed
@@ -176,7 +186,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.0.8...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/mohitsinghs/njk/compare/v3.0.8...v3.1.0
 [3.0.8]: https://github.com/mohitsinghs/njk/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/mohitsinghs/njk/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/mohitsinghs/njk/compare/v3.0.5...v3.0.6
