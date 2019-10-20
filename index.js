@@ -28,8 +28,7 @@ module.exports = (source, opts) => {
   if (Array.isArray(source)) {
     const time = process.hrtime()
     printResult(source.filter(isFile).map(processFile), opts, time)
-  }
-  if (isFile(source)) {
+  } else if (isFile(source)) {
     // single/changed file
     const time = process.hrtime()
     printResult([processFile(source)], opts, time)
