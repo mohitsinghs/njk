@@ -2,7 +2,8 @@ language: node_js
 node_js:
   - '8'
   - '10'
-  - '11'
+  - '12'
+  - '13'
 before_install:
   - npm i -g npm
 notifications:
@@ -10,7 +11,7 @@ notifications:
 jobs:
   include:
     - stage: npm release
-      node_js: '10'
+      node_js: '12'
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm

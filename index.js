@@ -13,11 +13,11 @@ const chalk = require('chalk')
  * @param {object} options extra configuration
  */
 module.exports = (source, opts) => {
-  const isFile = f => fs.lstatSync(f).isFile()
-  const processFile = file => {
+  const isFile = (f) => fs.lstatSync(f).isFile()
+  const processFile = (file) => {
     return render(file, opts)
-      .then(result => write(result, opts))
-      .catch(err =>
+      .then((result) => write(result, opts))
+      .catch((err) =>
         logger.fail(
           chalk`Error processing {yellow ${path.basename(file)}}`,
           err

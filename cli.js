@@ -27,7 +27,7 @@ cli
   .option(
     '-t, --template <dirs>',
     'Template directories (same as searchPaths)\n',
-    t => t.split(',')
+    (t) => t.split(',')
   )
   .option('-o, --out <dir>', 'Output directory', 'dist')
   .on('--help', () => {
@@ -46,7 +46,7 @@ const files = getExisting(
   pathtype.SOURCES
 )
 // list rootPaths for files and directories
-const rootPaths = files.map(f =>
+const rootPaths = files.map((f) =>
   fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
 )
 
@@ -54,7 +54,7 @@ const templateFiles = getExisting(
   globby(cli.template, { absolute: true }),
   pathtype.TEMPLATES
 )
-const templates = templateFiles.map(f =>
+const templates = templateFiles.map((f) =>
   fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
 )
 
@@ -74,8 +74,8 @@ const opts = {
     decodeEntities: true,
     keepClosingSlash: true,
     sortAttributes: true,
-    sortClassName: true
-  }
+    sortClassName: true,
+  },
 }
 
 api(files, opts)
@@ -89,9 +89,9 @@ if (cli.watch) {
   logger.log('Running in watch mode')
   const watcher = chokidar.watch(watchList, {
     ignored: /(^|[/\\])\../,
-    ignoreInitial: true
+    ignoreInitial: true,
   })
-  watcher.on('change', file => {
+  watcher.on('change', (file) => {
     if (isInside(file, templates)) {
       // if a template is changed render everything again
       logger.log(
