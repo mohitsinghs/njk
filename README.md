@@ -61,9 +61,12 @@ You can help improving njk in following ways -
 
 ---
 
-<h2 align="center">Examples</h2>
-
-### 1. Rendering a template using block flag and layout option in front matter
+<h2>Examples</h2>
+<details>
+  <summary>
+    <b>1. Rendering a template using block flag and layout option in front matter</b>
+  </summary>
+  <br/>
 
 We can avoid wrapping `extends` tags and overriding `block` tags, If we need to inject single block in parent template.
 
@@ -143,9 +146,13 @@ _`dist/index.html`_
 </html>
 ```
 
----
+</details>
 
-## 2. Rendering a template using layout option in front matter
+<details>
+  <summary>
+    <b>2. Rendering a template using layout option in front matter</b>
+  </summary>
+  <br/>
 
 Wrapping `extends` tag in each of our file isn't super cool,
 
@@ -230,7 +237,13 @@ _`dist/index.html`_
 </html>
 ```
 
-### Extra : Configuring layout through data passed
+</details>
+
+<details>
+  <summary>
+    <b>Extra : Configuring layout through data passed</b>
+  </summary>
+  <br/>
 
 We can go one step further and configure layout it in the data passed with `-d` or `--data`
 
@@ -291,3 +304,6 @@ njk index.html -d data.json
 **Result**
 
 The result will be same as our previous run (Example 2).
+
+</details>
+
