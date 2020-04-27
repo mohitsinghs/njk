@@ -23,32 +23,26 @@ Install with [npm](https://npm.im/njk)
 npm i -g njk
 ```
 
-## CLI Options
+## Usages
 
 ```sh
-$ njk --help
-
-  Usage: njk <files|dirs|globs> [options]
-
-  Options:
-
-    -V, --version          output the version number
-    -v, --verbose          print additional log
-    -b, --block            wrap a content block in files
-    -c, --clean            use clean urls for output files
-    -w, --watch            watch for file changes
-
-    -d, --data <file|dir>  JSON data or yaml directory
-    -t, --template <dirs>  Template directories (same as searchPaths)
-
-    -o, --out <dir>        Output directory (default: dist)
-    -h, --help             output usage information
-
-    Having troubles ? Just file an issue:
-    https://github.com/mohitsinghs/njk/issues/new
-    Or look at some examples:
-    https://github.com/mohitsinghs/njk/wiki
+njk <files|dirs|globs> [options]
 ```
+
+## CLI Flags
+
+- **`-V`** prints version
+- **`-h or --help`** prints help text
+- **`-v or --verbose`** includes additional logging
+- **`-b or --block`** wraps a content block by default. This is convenient when you you want to extend just one block. This helps you avoid writing extends tag in child template
+- **`-c or --clean`** uses clean urls (urls with forward slash) for output files.
+- **`-w or --watch`** runs everything in watch mode. HTML is not minified in this mode.
+
+## CLI Options
+
+- **`-d or --data`** pass either json file path of yaml directory path containing data.
+- **`-t or --template`** pass template directories (nunjucks searchPaths). Multiple template directories can be passed, separated by comma `,`
+- **`-o or --out`** pass output directory
 
 ## File Options
 
@@ -58,9 +52,242 @@ Following options can be configured through front-matter of individual files.
 - **`block`** Wraps a content block around a page. If enabled, an empty content block is required in parent template where content will be inserted.
 - **`clean`** Uses clean urls while writing files. For example `file.html` will be written as `file/index.html`
 
-See [wiki](https://github.com/mohitsinghs/njk/wiki) for some examples.
+## Contributing
 
-## Additional Notes
+You can help improving njk in following ways -
 
-- **passing multiple template directories** - Multiple template directories can be passed, seperated by comma `,`
-- **html minification** - HTML is minifed by default except in watch mode.
+- Found a bug, create an issue with relevant information.
+- Want a feature to be added, A pull request is always welcome.
+
+---
+
+<h2 align="center">Examples</h2>
+
+### 1. Rendering a template using block flag and layout option in front matter
+
+We can avoid wrapping `extends` tags and overriding `block` tags, If we need to inject single block in parent template.
+
+**Step 1**
+
+Consider we have a nunjucks template with single block.
+
+_`default.njk`_
+
+```nunjucks
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  {% block content %}{% endblock %}
+  <!-- The block name content is important -->
+</body>
+</html>
+```
+
+and a simple html page
+
+_`index.html`_
+
+```nunjucks
+---
+layout: default
+---
+</head>
+<h1>On Laughing</h1>
+</header>
+<main>
+<p>A laugh draws a lot of painful lines.</p>
+</main>
+<footer>
+<small>Copyright &copy; Creator Inc.</small>
+</footer>
+```
+
+**Step 2**
+
+Now, Let's run njk.
+
+```bash
+njk index.html -b
+```
+
+> The current directory will be used for templates.
+
+**Result**
+
+The result will be something like
+
+_`dist/index.html`_
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page Title</title>
+  </head>
+  <body>
+    <header>
+      <h1>On Laughing</h1>
+    </header>
+    <main>
+      <p>A laugh draws a lot of painful lines.</p>
+    </main>
+    <footer>
+      <small>Copyright © Creator Inc.</small>
+    </footer>
+  </body>
+</html>
+```
+
+---
+
+## 2. Rendering a template using layout option in front matter
+
+Wrapping `extends` tag in each of our file isn't super cool,
+
+and we can avoid this by using `layout` option in front-matter.
+
+### Example
+
+**Step 1**
+
+Consider we have a nunjucks template with 3 blocks.
+
+_`default.njk`_
+
+```nunjucks
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Title</title>
+</head>
+<body>
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+  <footer>
+    {% block footer %}{% endblock %}
+  </footer>
+</body>
+</html>
+```
+
+and a simple html page with content for these 3 blocks
+
+_`index.html`_
+
+```nunjucks
+---
+layout: default
+---
+{% block header %}
+<h1>On Laughing</h1>
+{% endblock %}
+{% block main %}
+<p>A laugh draws a lot of painful lines.</p>
+{% endblock %}
+{% block footer %}
+<small>Copyright &copy; Creator Inc.</small>
+{% endblock %}
+```
+
+**Step 2**
+
+Now, Let's run njk.
+
+```bash
+njk index.html
+```
+
+> The current directory will be used for templates.
+
+**Result**
+
+The result will be something like
+
+_`dist/index.html`_
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page Title</title>
+  </head>
+  <body>
+    <header><h1>On Laughing</h1></header>
+    <main><p>A laugh draws a lot of painful lines.</p></main>
+    <footer><small>Copyright © Creator Inc.</small></footer>
+  </body>
+</html>
+```
+
+### Extra : Configuring layout through data passed
+
+We can go one step further and configure layout it in the data passed with `-d` or `--data`
+
+**Step 1**
+
+Remove front-matter from _`index.html`_
+
+_`index.html`_
+
+```nunjucks
+{% block header %}
+<h1>On Laughing</h1>
+{% endblock %}
+{% block main %}
+<p>A laugh draws a lot of painful lines.</p>
+{% endblock %}
+{% block footer %}
+<small>Copyright &copy; Creator Inc.</small>
+{% endblock %}
+```
+
+**Step 2 ( using yml )**
+
+_`data/page.yml`_
+
+```yml
+layout: default
+```
+
+We need to run
+
+```bash
+njk index.html -d data
+```
+
+Note that file name is important here, as we need `page.layout` property.
+
+**Step 2 ( using json )**
+
+We can pass a single json file instead of `data` folder
+
+_`data.json`_
+
+```json
+{
+  "page": {
+    "layout": "default"
+  }
+}
+```
+
+We need to run
+
+```bash
+njk index.html -d data.json
+```
+
+**Result**
+
+The result will be same as our previous run (Example 2).
