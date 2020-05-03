@@ -2,7 +2,9 @@ name: ci
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - refs/tags/*
   pull_request:
     branches: [ master ]
 
@@ -22,7 +24,7 @@ jobs:
 
   publish-npm:
     needs: build
-    if: startsWith(github.event.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
