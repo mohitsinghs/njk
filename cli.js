@@ -14,7 +14,7 @@ cli
   .version(
     chalk`
     {yellow njk}: ${require('./package.json').version}
-    {yellow nunjucks}: ${require('nunjucks/package.json').version}
+    {yellow nunjucks}: 3.2.1
   `
   )
   .arguments('<files|dirs|globs>')
