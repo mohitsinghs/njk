@@ -34,8 +34,6 @@ cli
     console.log(chalk`
     Having troubles ? Just file an issue:
     {cyan https://github.com/mohitsinghs/njk/issues/new}
-    Or look at some examples:
-    {cyan https://github.com/mohitsinghs/njk/wiki}
     `)
   })
   .parse(process.argv)
