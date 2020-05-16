@@ -1,10 +1,12 @@
 <h1 align="center">njk</h1>
 
 <p align="center">
-  <a href="https://github.com/mohitsinghs/njk/actions"><img src="https://github.com/mohitsinghs/njk/workflows/ci/badge.svg" alt="Build Status"></a>
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mohitsinghs/njk/ci">
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg" alt="npm version"></a>
-  <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://david-dm.org/mohitsinghs/njk/status.svg" alt="dependencies Status"></a>
-  <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://david-dm.org/mohitsinghs/njk/dev-status.svg" alt="devDependencies Status"></a>
+  <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://img.shields.io/david/mohitsinghs/njk" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://img.shields.io/david/dev/mohitsinghs/njk" alt="devDependencies Status"></a>
+  <img alt="node-current" src="https://img.shields.io/node/v/njk">
+  <img alt="npm" src="https://img.shields.io/npm/dt/njk">
   <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license MIT"></a>
 </p>
 
