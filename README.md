@@ -1,7 +1,7 @@
 <h1 align="center">njk</h1>
 
 <p align="center">
-  <a href="https://travis-ci.com/mohitsinghs/njk"><img src="https://travis-ci.com/mohitsinghs/njk.svg" alt="Build Status"></a>
+  <a href="https://github.com/mohitsinghs/njk/actions"><img src="https://github.com/mohitsinghs/njk/workflows/ci/badge.svg" alt="Build Status"></a>
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg" alt="npm version"></a>
   <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://david-dm.org/mohitsinghs/njk/status.svg" alt="dependencies Status"></a>
   <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://david-dm.org/mohitsinghs/njk/dev-status.svg" alt="devDependencies Status"></a>
