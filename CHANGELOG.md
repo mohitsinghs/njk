@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.0] - 2020-05-17
+
+## Added
+
+- New flag `--quiet` to silence error
+
+## Changed
+
+- Minor refactor and moved mostly to async await
+
+## Secutity
+
+- Upgrade dependencies
+
 ## [3.3.0] - 2020-05-14
 
 ## Removed
@@ -232,7 +246,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.3.0...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/mohitsinghs/njk/compare/v3.3.0...v3.4.0
 [3.3.0]: https://github.com/mohitsinghs/njk/compare/v3.2.2...v3.3.0
 [3.2.2]: https://github.com/mohitsinghs/njk/compare/v3.2.1...v3.2.2
 [3.2.1]: https://github.com/mohitsinghs/njk/compare/v3.2.0...v3.2.1
