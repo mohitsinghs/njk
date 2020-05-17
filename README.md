@@ -1,16 +1,15 @@
-<h1 align="center">njk</h1>
-
 <p align="center">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mohitsinghs/njk/ci">
-  <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg" alt="npm version"></a>
-  <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://img.shields.io/david/mohitsinghs/njk" alt="dependencies Status"></a>
-  <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://img.shields.io/david/dev/mohitsinghs/njk" alt="devDependencies Status"></a>
-  <img alt="node-current" src="https://img.shields.io/node/v/njk">
-  <img alt="npm" src="https://img.shields.io/npm/dt/njk">
-  <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license MIT"></a>
-</p>
-
-<p align="center">
+  <img alt="njk" height="125" src="https://gist.githubusercontent.com/mohitsinghs/fba432d7cc567cfb721a96d8bf919df3/raw/njk_logo.svg?sanitize=true">
+  <br>
+  <br>
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mohitsinghs/njk/ci?style=flat-square">
+  <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg?style=flat-square" alt="npm version"></a>
+  <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://img.shields.io/david/mohitsinghs/njk?style=flat-square" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://img.shields.io/david/dev/mohitsinghs/njk?style=flat-square" alt="devDependencies Status"></a>
+  <img alt="node-current" src="https://img.shields.io/node/v/njk?style=flat-square">
+  <img alt="npm" src="https://img.shields.io/npm/dt/njk?style=flat-square">
+  <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="license MIT"></a>
+</p><p align="center">
   <b>Render nunjucks templates with markdown and front-matter</b><br/>
   <sub>generate ( and minify ) html based on nunjucks templates, markdown, front-matter and json/yml data</sub>
 </p>
