@@ -1,13 +1,11 @@
 #!/usr/bin/env node
-const fs = require('fs')
 const path = require('path')
 const cli = require('commander')
 const chokidar = require('chokidar')
 const chalk = require('chalk')
 const logger = require('./lib/logger')
 const getData = require('./lib/get-data')
-const globby = require('globby').sync
-const { isInside, getExisting, pathtype } = require('./lib/utils')
+const { isInside, getPaths, getTemplates } = require('./lib/utils')
 const api = require('./')
 
 cli
@@ -22,6 +20,7 @@ cli
   .option('-v, --verbose', 'print additional log')
   .option('-b, --block', 'wrap a content block in files')
   .option('-c, --clean', 'use clean urls for output files')
+  .option('-q, --quiet', 'silence output until error ocours')
   .option('-w, --watch', 'watch for file changes\n')
   .option('-d, --data <file|dir>', 'JSON data or JSON/yaml directory')
   .option(
@@ -38,28 +37,14 @@ cli
   })
   .parse(process.argv)
 
-// list of files to process
-const files = getExisting(
-  globby(cli.args, { absolute: true }),
-  pathtype.SOURCES
-)
-// list rootPaths for files and directories
-const rootPaths = files.map((f) =>
-  fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
-)
-
-const templateFiles = getExisting(
-  globby(cli.template, { absolute: true }),
-  pathtype.TEMPLATES
-)
-const templates = templateFiles.map((f) =>
-  fs.lstatSync(f).isDirectory() ? f : path.dirname(f)
-)
+const [files, rootPaths] = getPaths(cli.args)
+const templates = getTemplates(cli.template)
 
 const opts = {
   verbose: cli.verbose,
   block: cli.block,
   clean: cli.clean,
+  quiet: cli.quiet,
   data: getData(cli.data),
   rootPaths,
   templates,
@@ -75,7 +60,6 @@ const opts = {
     sortClassName: true,
   },
 }
-
 api(files, opts)
 
 // list of files and directories to watch

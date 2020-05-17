@@ -1,10 +1,10 @@
-const fs = require('fs-extra')
+const chalk = require('chalk')
 const path = require('path')
 const render = require('./lib/render')
 const write = require('./lib/write')
 const logger = require('./lib/logger')
 const printResult = require('./lib/print-result')
-const chalk = require('chalk')
+const { isFile } = require('./lib/utils')
 
 /**
  * For a given file or array of files render html pages
@@ -13,24 +13,23 @@ const chalk = require('chalk')
  * @param {object} options extra configuration
  */
 module.exports = (source, opts) => {
-  const isFile = (f) => fs.lstatSync(f).isFile()
-  const processFile = (file) => {
-    return render(file, opts)
-      .then((result) => write(result, opts))
-      .catch((err) =>
-        logger.fail(
-          chalk`Error processing {yellow ${path.basename(file)}}`,
-          err
-        )
+  // render and write files based on filename
+  const processFile = async (file) => {
+    try {
+      const result = await render(file, opts)
+      return await write(result, opts)
+    } catch (err) {
+      return logger.fail(
+        chalk`Error processing {yellow ${path.basename(file)}}`,
+        err
       )
+    }
   }
   // multiple files
   if (Array.isArray(source)) {
-    const time = process.hrtime()
-    printResult(source.filter(isFile).map(processFile), opts, time)
+    printResult(source.filter(isFile).map(processFile), opts, process.hrtime())
   } else if (isFile(source)) {
     // single/changed file
-    const time = process.hrtime()
-    printResult([processFile(source)], opts, time)
+    printResult([processFile(source)], opts, process.hrtime())
   }
 }

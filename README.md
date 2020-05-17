@@ -38,6 +38,7 @@ njk <files|dirs|globs> [options]
 - **`-v or --verbose`** includes additional logging
 - **`-b or --block`** wraps a content block by default. This is convenient when you you want to extend just one block. This helps you avoid writing extends tag in child template
 - **`-c or --clean`** uses clean urls (urls with forward slash) for output files.
+- **`-q or --quiet`** silences the output until any error ocours.
 - **`-w or --watch`** runs everything in watch mode. HTML is not minified in this mode.
 
 ## CLI Options
