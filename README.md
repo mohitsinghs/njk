@@ -5,7 +5,6 @@
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mohitsinghs/njk/ci?style=flat-square">
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg?style=flat-square" alt="npm version"></a>
   <a href="https://david-dm.org/mohitsinghs/njk"><img src="https://img.shields.io/david/mohitsinghs/njk?style=flat-square" alt="dependencies Status"></a>
-  <a href="https://david-dm.org/mohitsinghs/njk?type=dev"><img src="https://img.shields.io/david/dev/mohitsinghs/njk?style=flat-square" alt="devDependencies Status"></a>
   <img alt="node-current" src="https://img.shields.io/node/v/njk?style=flat-square">
   <img alt="npm" src="https://img.shields.io/npm/dt/njk?style=flat-square">
   <a href="https://github.com/mohitsinghs/njk/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="license MIT"></a>
