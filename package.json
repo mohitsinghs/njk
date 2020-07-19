@@ -39,6 +39,7 @@
     "lodash.merge": "^4.6.2",
     "log-symbols": "^4.0.0",
     "marked": "^1.1.1",
+    "nunjucks": "^3.2.1",
     "prefer-local": "^1.0.4"
   }
 }
