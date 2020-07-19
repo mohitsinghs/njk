@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/mohitsinghs/njk#readme",
   "dependencies": {
-    "chalk": "^4.0.0",
-    "chokidar": "^3.4.0",
-    "commander": "^5.1.0",
+    "chalk": "^4.1.0",
+    "chokidar": "^3.4.1",
+    "commander": "^6.0.0",
     "data-dir": "^1.2.2",
     "front-matter": "^4.0.2",
     "fs-extra": "^9.0.1",
@@ -38,7 +38,7 @@
     "html-minifier": "^4.0.0",
     "lodash.merge": "^4.6.2",
     "log-symbols": "^4.0.0",
-    "marked": "^1.1.0",
+    "marked": "^1.1.1",
     "prefer-local": "^1.0.4"
   }
 }
