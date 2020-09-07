@@ -30,8 +30,8 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
-    "commander": "^6.0.0",
-    "data-dir": "^1.2.2",
+    "commander": "^6.1.0",
+    "data-dir": "^1.2.3",
     "front-matter": "^4.0.2",
     "fs-extra": "^9.0.1",
     "globby": "^11.0.1",

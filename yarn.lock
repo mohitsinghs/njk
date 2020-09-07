@@ -166,15 +166,15 @@ commander@^5.1.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
   integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
-commander@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.0.0.tgz#2b270da94f8fb9014455312f829a1129dbf8887e"
-  integrity sha512-s7EA+hDtTYNhuXkTlhqew4txMZVdszBmKWSPEMxGr8ru8JXR7bLUFIAtPhcSuFdJQ0ILMxnJi8GkQL0yvDy/YA==
+commander@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.1.0.tgz#f8d722b78103141006b66f4c7ba1e97315ba75bc"
+  integrity sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
 
-data-dir@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/data-dir/-/data-dir-1.2.2.tgz#60fb9c1997f327b875b669db6e71d488a6fd484f"
-  integrity sha512-s5wZ5CXJLjlxIMd/IisjY1jcbuufz/JVYfUByQb5jvvsse8i9CJitDgIj3Wf9Nmt+4W6RvdI3eGw3NcwfYcOHQ==
+data-dir@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/data-dir/-/data-dir-1.2.3.tgz#53d782402ff471ba16eeef1ec62b724951cda01b"
+  integrity sha512-Cg/rXsJR7zaryRJ+v36Hh+/PVMM/lX1Mtq4eyiL6WXoyp5CB2RdN1fOfq+oaPbvMOV5C7Znhw3wnx7sbUrJhrw==
   dependencies:
     js-yaml "^3.14.0"
 
