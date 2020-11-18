@@ -67,7 +67,7 @@ const watchList = []
 
 if (cli.watch) {
   watchList.push(...templates, ...rootPaths)
-  // set up watcher and watch for file chanegs
+  // set up watcher and watch for file changes
   logger.log('Running in watch mode')
   const watcher = chokidar.watch(watchList, {
     ignored: /(^|[/\\])\../,
