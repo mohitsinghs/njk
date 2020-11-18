@@ -99,7 +99,7 @@ _`index.html`_
 ---
 layout: default
 ---
-</head>
+<header>
 <h1>On Laughing</h1>
 </header>
 <main>
