@@ -29,16 +29,16 @@
   "homepage": "https://github.com/mohitsinghs/njk#readme",
   "dependencies": {
     "chalk": "^4.1.0",
-    "chokidar": "^3.4.3",
-    "commander": "^6.2.0",
+    "chokidar": "^3.5.0",
+    "commander": "^6.2.1",
     "data-dir": "^1.2.3",
     "front-matter": "^4.0.2",
     "fs-extra": "^9.0.1",
-    "globby": "^11.0.1",
+    "globby": "^11.0.2",
     "html-minifier": "^4.0.0",
     "lodash.merge": "^4.6.2",
     "log-symbols": "^4.0.0",
-    "marked": "^1.2.4",
+    "marked": "^1.2.7",
     "nunjucks": "^3.2.2",
     "prefer-local": "^1.0.4"
   }
