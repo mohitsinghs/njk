@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.6] - 2021-02-10
+
+# Security
+
+- Upgrade dependencies
+
 ## [3.4.5] - 2020-11-20
 
 # Fixed
@@ -278,7 +284,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.4.5...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.4.6...HEAD
+[3.4.6]: https://github.com/mohitsinghs/njk/compare/v3.4.5...v3.4.6
 [3.4.5]: https://github.com/mohitsinghs/njk/compare/v3.4.4...v3.4.5
 [3.4.4]: https://github.com/mohitsinghs/njk/compare/v3.4.3...v3.4.4
 [3.4.3]: https://github.com/mohitsinghs/njk/compare/v3.4.2...v3.4.3
