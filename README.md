@@ -1,7 +1,5 @@
+<h1 align="center">njk</h1>
 <p align="center">
-  <img alt="njk" height="125" src="https://gist.githubusercontent.com/mohitsinghs/fba432d7cc567cfb721a96d8bf919df3/raw/njk_logo.svg?sanitize=true">
-  <br>
-  <br>
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/mohitsinghs/njk/ci?style=flat-square">
   <a href="https://www.npmjs.com/package/njk"><img src="https://img.shields.io/npm/v/njk.svg?style=flat-square" alt="npm version"></a>
   <img alt="node-current" src="https://img.shields.io/node/v/njk?style=flat-square">
