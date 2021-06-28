@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.7] - 2021-06-28
+
+# Security
+
+- Upgrade dependencies
+
 ## [3.4.6] - 2021-02-10
 
 # Security
@@ -55,7 +61,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Minor refactor and moved mostly to async await
 
-## Secutity
+## Security
 
 - Upgrade dependencies
 
@@ -69,23 +75,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 # Removed
 
-- Redundent informations from logger and help
+- Redundant information from logger and help
 
 ## [3.2.1] - 2020-05-03
 
-# Secutity
+# Security
 
 - Update dependencies
 
 ## [3.2.0] - 2020-04-13
 
-# Secutity
+# Security
 
 - Drop Node 12
 
 ## [3.1.3] - 2020-04-13
 
-# Secutity
+# Security
 
 - Upgrade dependencies
 
@@ -189,7 +195,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Multiple template folders can be specified by seperating them with a comma(`,`)
+- Multiple template folders can be specified by separating them with a comma(`,`)
 - Output is minified except when in watch mode
 
 ### Changed
@@ -284,7 +290,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specify global data for templates as a json file or a directory with yaml files
 - Access data specified in front-matter with page object inside templates
 
-[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.4.6...HEAD
+[unreleased]: https://github.com/mohitsinghs/njk/compare/v3.4.7...HEAD
+[3.4.7]: https://github.com/mohitsinghs/njk/compare/v3.4.6...v3.4.7
 [3.4.6]: https://github.com/mohitsinghs/njk/compare/v3.4.5...v3.4.6
 [3.4.5]: https://github.com/mohitsinghs/njk/compare/v3.4.4...v3.4.5
 [3.4.4]: https://github.com/mohitsinghs/njk/compare/v3.4.3...v3.4.4
